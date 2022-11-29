@@ -1,6 +1,8 @@
 <template>
   <div class="bg-dark-bluish w-full rounded-[32px] relative overflow-hidden">
-    <p class="absolute right-8 top-2 text-white font-bold text-[32px]">$2.1M</p>
+    <p class="price absolute right-8 top-2 text-white font-bold text-[32px]">
+      {{ props.price ?? "$2.1M" }}
+    </p>
     <img
       src="https://unsplash.com/photos/2keCPb73aQY/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8OHx8aG91c2VzfGVufDB8fHx8MTY2OTU0Mzg1Mw&force=true"
       class="h-[200px] w-full rounded-[32px] object-cover"
@@ -11,7 +13,9 @@
     <div class="flex flex-col gap-4 w-full px-2 md:px-4">
       <div class="flex gap-2 items-center mt-4 justify-between">
         <div class="flex gap-4 items-center">
-          <p class="font-semibold text-[28px]">La Catalei House</p>
+          <p class="font-semibold text-[28px]">
+            {{ props.name ?? "La Catalei House" }}
+          </p>
 
           <img
             src="@/assets/images/verified.svg"
@@ -43,6 +47,7 @@
       </div>
     </div>
     <button
+      @click="fund()"
       class="bg-greenish h-[72px] w-full mt-4 text-[24px] font-semibold px-4 py-2 rounded-tr-[32px] rounded-tl-[32px]"
     >
       Fund
@@ -51,9 +56,10 @@
 </template>
 
 <script setup lang="ts">
-import { Property } from "@/models/Property";
+import { EventManager } from "@/main";
 
 export interface PropertyInterface {
+  id?: number;
   name?: string;
   images?: string[];
   price?: number;
@@ -63,6 +69,15 @@ export interface PropertyInterface {
 }
 
 const props = defineProps<PropertyInterface>();
+
+const fund = () => {
+  console.log("Funding");
+  EventManager.emit("openFundModal", { property: 0 });
+};
 </script>
 
-<style lang="sass" scoped></style>
+<style lang="scss" scoped>
+.price {
+  text-shadow: 2px 2px 4px #000000;
+}
+</style>

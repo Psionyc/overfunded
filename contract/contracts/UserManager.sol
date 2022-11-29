@@ -9,9 +9,10 @@ struct UserFunding{
 }
 
 struct User {
-    uint256 assetsFunded;
     string username;
     UserFunding[] fundings;
+    uint256 totalFunds;
+    uint256 assetsFunded;
 }
 
 contract UserManager {
@@ -35,6 +36,8 @@ contract UserManager {
     function addNewUserFunding(address _user, uint256 _property, uint256 _amount) external {
         UserFunding memory funding = UserFunding(block.timestamp, _amount, _property);
         users[_user].fundings.push(funding);
+        users[_user].totalFunds += _amount;
+        users[_user].assetsFunded += 1;
     }
 
     function getUserFundingPaginated(address _user,uint256 _offset, uint256 _limit) external view returns (UserFunding[] memory, uint256, uint256 ){

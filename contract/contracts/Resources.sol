@@ -7,6 +7,7 @@ import "./FundStorage.sol";
 enum PropertyStatus {
     FUNDING,
     FUNDED,
+    FLAGGED,
     PROCESSING_PURCHASE,
     PURCHASED
 }
@@ -22,6 +23,4 @@ struct Property {
     PropertyStatus status;
     bool verified;
     string location;
-    uint256 lon;
-    uint256 lat;
 }

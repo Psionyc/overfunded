@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "ethers": "^5.7.2",
+    "mitt": "^3.0.0",
     "motion": "^10.14.3",
     "pinia": "^2.0.23",
     "sass": "^1.56.1",

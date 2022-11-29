@@ -23,8 +23,6 @@ contract OverfundedManager is Ownable {
     constructor(ERC20 erc20) {
         master = msg.sender;
         admins[master] = true;
-        PropertyManager _propertyManager = new PropertyManager(erc20);
-        propertyManager = _propertyManager;
     }
 
     function addAdmin(address _admin) public onlyOwner {
@@ -35,16 +33,16 @@ contract OverfundedManager is Ownable {
         admins[_admin] = false;
     }
 
-    function withdraw(uint256 _property) public {
-        Property memory property = propertyManager.getProperty(_property);
+    // function withdraw(uint256 _property) public {
+    //     Property memory property = propertyManager.getProperty(_property);
 
-        require(
-            (property.owner == msg.sender || admins[msg.sender] == true),
-            "Only the management and owners can withdraw funds"
-        );
+    //     require(
+    //         (property.owner == msg.sender || admins[msg.sender] == true),
+    //         "Only the management and owners can withdraw funds"
+    //     );
 
-        propertyManager.withdrawPropertyFund(_property);
-    }
+    //     propertyManager.withdrawPropertyFund(_property);
+    // }
 
     function verifyProperty(uint256 _property) external onlyAdmins {
         propertyManager.verifyProperty(_property);
