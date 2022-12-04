@@ -1,21 +1,31 @@
 # Overfunded Hardhat Project
 This is a curation of the contracts in the Overfunded project
 
-Try running some of the following tasks:
 
 
-## Steps to take to run the project
-Step 1
+## Steps to take to compile and test the project
+**Step 1**
 ```shell
 npm run install
 ```
-Step 2
+**Step 2**
 ```shell
 npm run compile
 ```
-Step 3
+**Step 3**
 ```shell
 npm run test
+```
+
+## Steps to take to deploy the project
+There are currently three different networks
+- Mainnet
+- Testnet
+- Node
+  
+For the 'Node' you must have a node running, boot up one by using the command below:
+```shell
+npx hardhat node
 ```
 
 
