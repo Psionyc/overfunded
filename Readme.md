@@ -12,11 +12,15 @@ The average person wants to own propetries that yield profits but they probably 
 
 
 ## Brief Description
-Overfunded is a next-gen incentivized crowdfunding system that allows owning real life properties with blockchain proof while ensuring their funds are secured;
+Overfunded is a next-gen incentivized crowdfunding system that allows owning real-life properties with blockchain proof while ensuring their funds are secured;
 
 ## How To Use
 **Step 1**:
-Go to  
+Go to  https://overfunded.vercel.app/faucet
+**Step 2**:
+Connect a wallet and *GET OUSD*
+**Step 3**:
+Go to https://overfunded.vercel.app/fund and you can start testing out feautures
 
 ## Major Contracts and Functionalities
 - ERC720i.sol
@@ -29,8 +33,6 @@ Go to
 - Resources.sol
 - UserManager.sol  
 
-  
-  
   
 #### **ERC720i.sol**:
 One of my major 'offs' with the current ERC20 implementation was that to use an icon you had to login into polygonscan which made it feel less decentralized... The ERC720i implementation allows you to create tokens and keep the icons on chain...
