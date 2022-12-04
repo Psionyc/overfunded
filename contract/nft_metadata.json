@@ -1,0 +1,9 @@
+{
+    "title": "Overfunded NFT",
+    "type": "object",
+    "properties": {
+        "name": "OverfundedNFT",
+        "description": "One of the proofs that you truly own propetrty on overfunded",
+        "image": ""
+    }
+}

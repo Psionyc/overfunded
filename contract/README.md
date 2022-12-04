@@ -2,7 +2,6 @@
 This is a curation of all the contracts used in the Overfunded project. For proper workflow; follow the instructiosn below
 
 
-
 ## Steps to take to compile and test the project
 **Step 1**
 ```shell

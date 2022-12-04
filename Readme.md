@@ -8,7 +8,7 @@
 
 ## Use of Product
 The average person wants to own propetries that yield profits but they probably don't have a million to throw around but they can start with a thousand... This product (MVP) allows users to own shares of real life products with blockchain proof and get profits when the property yields profit...
->> Help on using the frontend and contract are documented 
+>> Help on using the frontend and contract are documented in  
 
 ## Brief Description
 Overfunded is a next-gen incentivized crowdfunding system that allows owning real life properties with blockchain proof while ensuring their funds are secured;
@@ -22,48 +22,48 @@ Overfunded is a next-gen incentivized crowdfunding system that allows owning rea
 - PropertyManager.sol
 - PropertyStorage.sol
 - Resources.sol
-- UserManager.sol
+- UserManager.sol  
 
-**ERC720i**
+  
+  
+  
+#### **ERC720i.sol**:
 One of my major 'offs' with the current ERC20 implementation was that to use an icon you had to login into polygonscan which made it feel less decentralized... The ERC720i implementation allows you to create tokens and keep the icons on chain...
 
-**FundStorage**
+#### **FundStorage.sol**:
 This contract controls storage of funds by the users and withdrawals... It is majorly controlled by the parent contract the ___PropertyManager___
 
-**Manageable**
+#### **Manageable.sol**:
 Manageable is an abstract contract that controls functionality of having admins that control certain functions and an overall master
 
-**ONFT**
+#### **ONFT.sol**:
 ONFT which is short for *OverfundedNFT* is just a NFT to hold once a property is purchased...
 >> **Note**: The functionality of this contract is limited since there is no actual backend 
 
-**OUSD**
+#### **OUSD.sol**:
 OUSD  is short for *OverfundedUSD*. It is an ERC20 token which is the currency that powers the Overfunded Ecosystem
 
-**PropertyManager**
+#### **PropertyManager.sol**:
 PropertyManager is the major contract that controls most of the Overfunded Ecosystem from the payments to fetching property data and property creation
 
-**PropertyStorage**
+#### **PropertyStorage.sol**:
 A child contract that helps the *PropertyManager* to store it's properties and to abstract some code from it...
 
-**Resources**
+#### **Resources.sol**:
 Contains all the structs used in all other contracts for cleaner code
 
-**UserManager.sol**
+#### **UserManager.sol**:
 Used to store user data and keep track of properties that users have funded
 
-## References
-https://www.youtube.com/watch?v=swZRo6LFrCw
-https://www.youtube.com/watch?v=nsf46dzgCog
-https://ethereum.stackexchange.com/questions/124235/providererror-error-transaction-reverted-function-selector-was-not-recognized
-https://github.com/NomicFoundation/hardhat/issues/2305
-https://www.youtube.com/watch?v=bnp8wpTXXOk
 
 ## Credits
-https://unsplash.com/
+- [Web3 Club](https://www.youtube.com/@Web3_Club)
+- [Smart Contract Programmer](https://www.youtube.com/@smartcontractprogrammer)
+- [Eat the Blocks](https://www.youtube.com/@EatTheBlocks)
+- https://ethereum.stackexchange.com/
+- https://unsplash.com/
 
-
-## Development Challenges
+## Contract Development Challenges
 Challenges I faced during the contract development process are:
 - Hardhat node
 - Storage vs Memory
@@ -82,4 +82,10 @@ Challenges I faced during the contract development process are:
 1. Use the ERC777 contract [ERC77](https://docs.openzeppelin.com/contracts/4.x/erc777)
 2. Use the ERC20 and call two separate functions.  
      I went with the second option since the ERC777 contract isn't very vast at the momen, changing to the ERC777 standard might be considered in the future
+
+## Frontend Development Challenges
+Challenges I faced during the frontend development process are:
+- Hexadecimal ChainID
+
+**Hexadecimal ChainID**: ChainIDs are naturally encoded as a decimal number on websites like https://chainlist.org but metamask requires hexadecimal chainIDs or it will throw an error
 
