@@ -1,9 +1,7 @@
 {
-    "title": "Overfunded NFT",
-    "type": "object",
-    "properties": {
-        "name": "OverfundedNFT",
-        "description": "One of the proofs that you truly own propetrty on overfunded",
-        "image": "https://raw.githubusercontent.com/Psionyc/overfunded/master/overfunded_verified.png"
-    }
-}
+    "description": "The Official NFT of the Overfunded Ecosystem", 
+    "external_url": "https://github.com/Psionyc/overfunded/", 
+    "image": "https://raw.githubusercontent.com/Psionyc/overfunded/master/overfunded_verified.png", 
+    "name": "OverfundedNFT",
+    "attributes": []
+  }
