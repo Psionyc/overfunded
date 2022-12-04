@@ -23,7 +23,9 @@ Go to [Faucet Page](https://overfunded.vercel.app/faucet).
 **Step 2**:
 Connect a wallet and _GET OUSD_.  
 **Step 3**:
-Go to [Funding Page](https://overfunded.vercel.app/fund) and you can start testing out feautures.
+Go to [Funding Page](https://overfunded.vercel.app/fund) and you can start testing out feautures.  
+**Step 4**
+Check out [What to Test](https://github.com/Psionyc/overfunded/#what-to-test)
 
 ## What to test
 
