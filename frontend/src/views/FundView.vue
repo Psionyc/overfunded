@@ -116,6 +116,7 @@
       <PropertyCard
         v-for="property in propertyStore.sortedProperties"
         :id="property.id.toNumber()"
+        :owner="property.owner"
         :name="property.name"
         :price="property.price.toNumber()"
         :verified="property.verified"

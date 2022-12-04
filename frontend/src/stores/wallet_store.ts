@@ -4,8 +4,8 @@ import { Contract, ethers, Signer } from "ethers";
 import type {
   UserStructOutput,
   UserManager,
-} from "../../../contract/typechain-types/contracts/UserManager";
-import UserManagerJson from "../../../contract/artifacts/contracts/UserManager.sol/UserManager.json";
+} from "@/typechain-types/contracts/UserManager";
+import UserManagerJson from "@/artifacts/contracts/UserManager.sol/UserManager.json";
 import { EventManager } from "@/main";
 import { NETWORK_PARAMETERS, USER_MANAGER_CONTRACT } from "@/config";
 import { ToastType } from "@/events";
@@ -141,7 +141,11 @@ export const usewalletStore = defineStore("wallet", () => {
 
   const mintPropertyNFT = async (funding: number) => {
     try {
-      await userManager?.mintPropertyNFT(funding);
+      const tx = await userManager?.mintPropertyNFT(funding);
+      await tx?.wait()
+
+      EventManager.emit('toast', {message: "NFT minted successfully", type: ToastType.SUCCESS})
+      
     } catch (e) {
       _handleError(e);
     }

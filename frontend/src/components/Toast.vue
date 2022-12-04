@@ -37,7 +37,7 @@ const background = computed(() => {
       break;
 
     default:
-      bg = "blue";
+      bg = "#0F3B7E";
       break;
   }
   return bg;

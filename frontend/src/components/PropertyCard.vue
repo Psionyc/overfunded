@@ -34,7 +34,6 @@
   width: `${props.funds! / props.price! * 200}px`
 }
         "
-          
           class="absolute h-2 rounded-full bg-gradient-to-r from-gradient-start to-gradient-stop"
         ></div>
       </div>
@@ -42,9 +41,12 @@
       <div class="flex gap-2 items-center">
         <img src="@/assets/images/coin-white.svg" alt="" srcset="" />
         <p class="font-semibold text-[24px]">
-          {{ formatCommas.format(props.funds) ?? 0 }}/{{ formatCommas.format(props.price) }}
+          {{ formatCommas.format(props.funds) ?? 0 }}/{{
+            formatCommas.format(props.price)
+          }}
           <span class="text-[20px]"
-            >({{ ((props.funds! / props.price!) * 100).toFixed(1) }}% Funded)</span
+            >({{ ((props.funds! / props.price!) * 100).toFixed(1) }}%
+            Funded)</span
           >
         </p>
       </div>
@@ -58,17 +60,51 @@
         </p>
       </div>
     </div>
-    <button
-      @click="fund()"
-      class="bg-greenish h-[72px] w-full mt-6 text-[24px] font-semibold px-4 py-2 "
-    >
-      Fund
-    </button>
+    <div class="flex gap-1">
+      <button
+        @click="fund()"
+        class="bg-greenish h-[72px] w-full mt-6 text-[24px] font-semibold px-4 py-2"
+      >
+        Fund
+      </button>
+      <button
+      :disabled="(!isOwner || notFullyFunded || withdrawLoading)"
+        @click="withdraw"
+        class="bg-greenish h-[72px] w-full mt-6 text-[24px] font-semibold px-4 py-2 disabled:bg-greenish/60 flex justify-center items-center gap-2"
+      >
+      <svg
+          v-show="withdrawLoading"
+          class="animate-spin max-w-[24px] max-h-[24px] text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"
+          ></circle>
+          <path
+            class="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          ></path>
+        </svg>
+        <p v-if="withdrawLoading">Withdrawing</p>
+        <p v-else>Withdraw</p>
+      </button>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { EventManager } from "@/main";
+import { usePropertyStore } from "@/stores/property_store";
+import { usewalletStore } from "@/stores/wallet_store";
+import { ref } from "vue";
 
 export interface PropertyInterface {
   id: number;
@@ -78,31 +114,46 @@ export interface PropertyInterface {
   funds: number;
   verified?: boolean;
   location?: string;
+  owner: string;
 }
 
+const propertyStore = usePropertyStore();
+const walletStore = usewalletStore();
 
 const formatter = Intl.NumberFormat("en-US", {
   compactDisplay: "short",
-  notation: 'compact',
-  maximumFractionDigits: 1, 
-  
-  
-  
-})
-
+  notation: "compact",
+  maximumFractionDigits: 1,
+});
 
 const formatCommas = Intl.NumberFormat("en-Us", {
   currency: "USD",
-  notation: 'standard'
-})
+  notation: "standard",
+});
 
 const props = defineProps<PropertyInterface>();
 
+
+const withdrawLoading = ref<boolean>(false)
+const isOwner = ref<boolean>((props.owner.toLowerCase() == walletStore.wallet.toLowerCase()))
+const notFullyFunded = props.funds < props.price
+
 const fund = () => {
-  console.log("Funding");
-  EventManager.emit('closeModal')
-  EventManager.emit("openFundModal", { id: props.id, price: props.price, funds: props.funds });
+  EventManager.emit("closeModal");
+  EventManager.emit("openFundModal", {
+    id: props.id,
+    price: props.price,
+    funds: props.funds,
+  });
   EventManager.emit("openModal");
+};
+
+const withdraw = async () => {
+  
+  withdrawLoading.value = true
+  await propertyStore.withdrawFunds(props.id).finally(()=>{
+    withdrawLoading.value = false
+  })
 };
 </script>
 

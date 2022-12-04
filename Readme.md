@@ -8,10 +8,15 @@
 
 ## Use of Product
 The average person wants to own propetries that yield profits but they probably don't have a million to throw around but they can start with a thousand... This product (MVP) allows users to own shares of real life products with blockchain proof and get profits when the property yields profit...
->> **Note:** Help on using the frontend and contract are documented in  
+>> **Note:** Read How to use below  
+
 
 ## Brief Description
 Overfunded is a next-gen incentivized crowdfunding system that allows owning real life properties with blockchain proof while ensuring their funds are secured;
+
+## How To Use
+**Step 1**:
+Go to  
 
 ## Major Contracts and Functionalities
 - ERC720i.sol
@@ -86,6 +91,9 @@ Challenges I faced during the contract development process are:
 ## Frontend Development Challenges
 Challenges I faced during the frontend development process are:
 - Hexadecimal ChainID
+- Hexadecimal Comparism
 
 **Hexadecimal ChainID**: ChainIDs are naturally encoded as a decimal number on websites like https://chainlist.org but metamask requires hexadecimal chainIDs or it will throw an error
+
+**Hexadecimal Comparism**: Hexadecimals can be stored in different cases therefore comparing them directly gave a bug till it was compared under the same case...
 

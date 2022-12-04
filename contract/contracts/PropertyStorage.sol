@@ -60,7 +60,7 @@ contract PropertyStorage is Ownable {
             _images,
             _fundStorage,
             PropertyStatus.FUNDING,
-            false,
+            true,
             _location
         );
 

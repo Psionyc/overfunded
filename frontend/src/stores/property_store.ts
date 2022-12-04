@@ -5,10 +5,10 @@ import type {
   PropertyManager,
   PropertyStructOutput,
   PropertyStruct,
-} from "../../../contract/typechain-types/contracts/PropertyManager";
-import type { OverfundedUSD } from "../../../contract/typechain-types/contracts/OUSD.sol/OverfundedUSD";
-import PropertyManagerJson from "../../../contract/artifacts/contracts/PropertyManager.sol/PropertyManager.json";
-import OverfundedJson from "../../../contract/artifacts/contracts/OUSD.sol/OverfundedUSD.json";
+} from "@/typechain-types/contracts/PropertyManager";
+import type { OverfundedUSD } from "@/typechain-types/contracts/OUSD.sol/OverfundedUSD";
+import PropertyManagerJson from "@/artifacts/contracts/PropertyManager.sol/PropertyManager.json";
+import OverfundedJson from "@/artifacts/contracts/OUSD.sol/OverfundedUSD.json";
 import { BaseContract, BigNumber, ethers, providers } from "ethers";
 import { EventManager } from "@/main";
 import { ToastType } from "@/events";
@@ -90,8 +90,8 @@ export const usePropertyStore = defineStore("property", () => {
     sortBy.value = _sortBy;
   }
 
-  function search(value: string){
-    _search.value = value
+  function search(value: string) {
+    _search.value = value;
   }
 
   async function refreshProperties() {
@@ -141,7 +141,7 @@ export const usePropertyStore = defineStore("property", () => {
     try {
       await (await ousd?.approve(propertyManager?.address!, amount))!.wait(1);
       EventManager.emit("toast", {
-        message: "Confirming tx 1",
+        message: "Confirmed tx 1",
         type: ToastType.INFO,
       });
       await (await propertyManager?.fundProperty(property, amount))!.wait();
@@ -182,6 +182,20 @@ export const usePropertyStore = defineStore("property", () => {
     return await ousd?.balanceOf(address);
   }
 
+  async function withdrawFunds(_property: number) {
+    try {
+      const tx = await propertyManager?.withdrawPropertyFund(_property);
+      await tx?.wait();
+      
+      EventManager.emit("toast", {
+        message: "Succesfully Withdrawn Funds",
+        type: ToastType.SUCCESS,
+      });
+    } catch (error) {
+      _handleError(error);
+    }
+  }
+
   async function getOUSD() {
     try {
       const tx = await ousd?.requestTokens();
@@ -208,5 +222,6 @@ export const usePropertyStore = defineStore("property", () => {
     getOUSDBalance,
     getOUSD,
     search,
+    withdrawFunds
   };
 });

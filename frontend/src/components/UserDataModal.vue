@@ -327,8 +327,10 @@ const changeLogoUrl = async () => {
 const mintPropertyNFT =async (index: number) =>{
 
   loadingState.mintingNFT = true;
-  await walletStore.mintPropertyNFT(index);
-  loadingState.mintingNFT = false;
+  await walletStore.mintPropertyNFT(index).finally(()=>{
+    loadingState.mintingNFT = false
+  });
+
 }
 </script>
 
