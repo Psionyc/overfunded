@@ -1,5 +1,5 @@
 # Overfunded Hardhat Project
-This is a curation of the contracts in the Overfunded project
+This is a curation of all the contracts used in the Overfunded project. For proper workflow; follow the instructiosn below
 
 
 
@@ -39,6 +39,7 @@ npm run deploy:testnet
 npm run deploy:node
 ```
 
+## If you need some extra functionality you can checkout some other commands
 ```shell
 npx hardhat help
 npx hardhat test
