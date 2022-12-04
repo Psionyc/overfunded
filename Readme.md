@@ -8,7 +8,7 @@
 
 ## Use of Product
 The average person wants to own propetries that yield profits but they probably don't have a million to throw around but they can start with a thousand... This product (MVP) allows users to own shares of real life products with blockchain proof and get profits when the property yields profit...
->> Help on using the frontend and contract are documented in  
+>> **Note:** Help on using the frontend and contract are documented in  
 
 ## Brief Description
 Overfunded is a next-gen incentivized crowdfunding system that allows owning real life properties with blockchain proof while ensuring their funds are secured;

@@ -6,6 +6,9 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract OverfundedNFT is ERC721, ERC721URIStorage, Ownable {
+    //For testing purposes only
+    string URI_OVERRIDE = "https://raw.githubusercontent.com/Psionyc/overfunded/master/contract/nft_metadata.json";
+
     constructor() ERC721("OverfundedNFT", "ONFT") {}
 
     function safeMint(address to, uint256 tokenId, string memory uri)
@@ -13,7 +16,7 @@ contract OverfundedNFT is ERC721, ERC721URIStorage, Ownable {
         onlyOwner
     {
         _safeMint(to, tokenId);
-        _setTokenURI(tokenId, uri);
+        _setTokenURI(tokenId, URI_OVERRIDE);
     }
 
 
