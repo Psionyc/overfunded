@@ -1,4 +1,4 @@
-import { AuctionView, FundView, HomeView } from "@/views";
+import { AuctionView, FundView, HomeView , FaucetView} from "@/views";
 import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
@@ -7,6 +7,7 @@ const router = createRouter({
     { path: "/", name: "home", component: HomeView },
     { path: "/fund", name: "fund", component: FundView },
     { path: "/auction", name: "auction", component: AuctionView },
+    { path: "/faucet", name: "faucet", component: FaucetView },
   ],
 });
 

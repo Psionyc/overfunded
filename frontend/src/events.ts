@@ -1,8 +1,37 @@
+import type { ethers } from "ethers";
+
 export type AppEvents = {
+  openModal: any;
   openFundModal: OpenFundModal;
-  closeFundModal: any;
+  closeModal: any;
+  connectOrUpdatedUser: any;
+  propertyFounded: PropertyFunded;
+  openAddPropertyModal: any;
+  toast: Toast;
+  openUserDataModal: any;
+  dataUpdated: any;
+  openUniversalLoader: any 
+  closeUniversalLoader: any
 };
 
+export enum ToastType {
+  ERROR,
+  INFO,
+  SUCCESS,
+  WARNING,
+}
+
 export interface OpenFundModal {
-  property: number;
+  id: number;
+  price: number;
+  funds: number;
+}
+export interface PropertyFunded {
+  id: number;
+  funds: number;
+}
+
+export interface Toast {
+  message: string;
+  type: ToastType;
 }

@@ -9,9 +9,9 @@
     </router-link>
     <div class="md:flex gap-6 hidden  items-center text-[18px] font-medium">
       <RouterLink to="/fund"><h4>Properties</h4></RouterLink>
-      <RouterLink to="/auction"><h4>Auction</h4></RouterLink>
-      
+      <RouterLink to="/faucet"><h4>Faucet</h4></RouterLink>
     </div>
+    <img class="h-[24px] md:hidden block" src="@/assets/images/menu.svg" alt="" srcset="">
   </div>
 </template>
 

@@ -47,7 +47,7 @@ contract PropertyManager is Manageable {
         uint256 _price,
         string[] calldata _images,
         string calldata _location
-    ) public onlyAdmins returns (Property memory) {
+    ) public  returns (Property memory) {
         FundStorage fundStorage = new FundStorage(_price, token);
         Property memory property = propertyStorage.createNewProperty(
             _name,
@@ -102,7 +102,7 @@ contract PropertyManager is Manageable {
             if (address(userManager) != address(0))
                 userManager.addNewUserFunding(
                     msg.sender,
-                    _property,
+                    UserFundedProperty(property.id, property.name, property.price, property.images[0]),
                     remainingAmountToFund
                 );
         } else {
@@ -116,7 +116,7 @@ contract PropertyManager is Manageable {
             property.funds = property.funds + _amount;
             property.fundStorage.createFunding(msg.sender, _amount);
             if (address(userManager) != address(0))
-                userManager.addNewUserFunding(msg.sender, _property, _amount);
+                userManager.addNewUserFunding(msg.sender, UserFundedProperty(property.id, property.name, property.price, property.images[0]), _amount);
         }
         propertyStorage.setProperty(_property, property);
         emit PropertyFunded(_property);

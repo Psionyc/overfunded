@@ -17,13 +17,11 @@ async function main() {
   console.log("OUSD deployed to", ousd.address);
   console.log("Property manager deployed to", propertyManager.address);
 
-  await ousd
+  ousd
     .connect(signer1)
     .transfer("0xCCaBbf41bc7121135673e683c3228A4DBA1FB6d8", "10000000");
 
-  let prop;
-
-  prop = await propertyManager.createNewProperty(
+  await propertyManager.createNewProperty(
     "Dundalk House",
     "1000",
     [
@@ -31,9 +29,7 @@ async function main() {
     ],
     "Dundalk, Maryland(MD), 21222"
   );
-
-  await prop.wait();
-  prop = await propertyManager.createNewProperty(
+  await propertyManager.createNewProperty(
     "La Vila Es Beauty",
     "2000",
     [
@@ -41,8 +37,7 @@ async function main() {
     ],
     "Pleasantville, Ohio(OH), 43148"
   );
-  await prop.wait();
-  prop = await propertyManager.createNewProperty(
+  await propertyManager.createNewProperty(
     "House Of Cards",
     "3000",
     [
@@ -50,8 +45,7 @@ async function main() {
     ],
     "Dixon, Missouri(MO), 65459"
   );
-  await prop.wait();
-  prop = await propertyManager.createNewProperty(
+  await propertyManager.createNewProperty(
     "Porshe",
     "4000",
     [
@@ -59,8 +53,7 @@ async function main() {
     ],
     "Vixon, Missouri(MO), 65459"
   );
-  await prop.wait();
-  prop = await propertyManager.createNewProperty(
+  await propertyManager.createNewProperty(
     "Kamida",
     "100000",
     [
@@ -68,8 +61,7 @@ async function main() {
     ],
     "Nixon, Missouri(MO), 65459"
   );
-  await prop.wait();
-  prop = await propertyManager.createNewProperty(
+  await propertyManager.createNewProperty(
     "Cest La Villa",
     "7000",
     [
@@ -77,8 +69,7 @@ async function main() {
     ],
     "Smyrna, Georgia(GA), 30080"
   );
-  await prop.wait();
-  prop = await propertyManager.createNewProperty(
+  await propertyManager.createNewProperty(
     "Miamato De Carera",
     "89009",
     [
@@ -86,8 +77,7 @@ async function main() {
     ],
     "74 Carriage CirOley, Pennsylvania(PA), 19547"
   );
-  await prop.wait();
-  prop = await propertyManager.createNewProperty(
+  await propertyManager.createNewProperty(
     "Cissa A Missa",
     "67468",
     [
@@ -95,8 +85,7 @@ async function main() {
     ],
     "Naperville, Illinois(IL), 60563"
   );
-  await prop.wait();
-  prop = await propertyManager.createNewProperty(
+  await propertyManager.createNewProperty(
     "Testiago La Carera",
     "12483",
     [
@@ -104,7 +93,6 @@ async function main() {
     ],
     "Theresa, New York(NY), 13691"
   );
-  await prop.wait();
 }
 
 // We recommend this pattern to be able to use async/await everywhere

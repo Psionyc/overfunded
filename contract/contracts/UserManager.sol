@@ -1,46 +1,58 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
-
-
-struct UserFunding{
-    uint256 timestamp;
-    uint256 amount;
-    uint256 property;
-}
-
-struct User {
-    string username;
-    UserFunding[] fundings;
-    uint256 totalFunds;
-    uint256 assetsFunded;
-}
+import "./Resources.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "./ONFT.sol";
 
 contract UserManager {
     mapping(address => User) public users;
+    OverfundedNFT onft;
+    uint256 nextTokenId = 0;
+
+    constructor() {
+       onft = new OverfundedNFT();
+    }
 
     function getUser(address _user) public view returns (User memory) {
         User memory user = users[_user];
-
         return user;
     }
 
-    function setUsername(address _user, string calldata _username) external {
-        require(
-            msg.sender == _user,
-            "You have no authority to set another users username"
-        );
-        users[_user].username = _username;
+    function setUsername(string calldata _username) external {
+        users[msg.sender].username = _username;
     }
 
+    function mintPropertyNFT(uint256 _funding) public {
+        string storage baseImage = users[msg.sender].fundings[_funding].property.baseImage;
+        onft.safeMint(msg.sender, nextTokenId, baseImage);
+        nextTokenId += 1;
+    }
 
-    function addNewUserFunding(address _user, uint256 _property, uint256 _amount) external {
-        UserFunding memory funding = UserFunding(block.timestamp, _amount, _property);
+    function addNewUserFunding(
+        address _user,
+        UserFundedProperty calldata _property,
+        uint256 _amount
+    ) external {
+        UserFunding memory funding = UserFunding(
+            block.timestamp,
+            _amount,
+            _property,
+            users[_user].fundings.length
+        );
         users[_user].fundings.push(funding);
         users[_user].totalFunds += _amount;
         users[_user].assetsFunded += 1;
     }
 
-    function getUserFundingPaginated(address _user,uint256 _offset, uint256 _limit) external view returns (UserFunding[] memory, uint256, uint256 ){
+    function setUserLogo(string calldata _logoUrl) external {
+        users[msg.sender].logoUrl = _logoUrl;
+    }
+
+    function getUserFundingPaginated(
+        address _user,
+        uint256 _offset,
+        uint256 _limit
+    ) external view returns (UserFunding[] memory, uint256, uint256) {
         User memory user = users[_user];
         uint256 totalFunding = user.fundings.length;
         if (_limit == 0) {
@@ -58,7 +70,6 @@ contract UserManager {
         for (uint i = 0; i < _limit; i++) {
             values[i] = user.fundings[_offset + i];
         }
-
         return (values, _offset + _limit, totalFunding);
     }
 }

@@ -4,7 +4,7 @@ import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { PropertyManager } from "../typechain-types/contracts/PropertyManager";
 import { Manageable } from "../typechain-types/contracts/Managable.sol/Manageable";
 import { BigNumber } from "ethers";
-describe("Property Manager", function () {
+describe("Testing Interconnected contracts", function () {
   let a: SignerWithAddress,
     b: SignerWithAddress,
     c: SignerWithAddress,
@@ -70,8 +70,8 @@ describe("Property Manager", function () {
     });
     it("Can ascertain correct property manager", async () => {
       const propertyManager = await deploy();
-      console.log(await propertyManager.address);
-      expect(await propertyManager).not.to.be.undefined;
+      console.log(propertyManager.address);
+      expect(propertyManager).not.to.be.undefined;
     });
   });
 
@@ -79,7 +79,7 @@ describe("Property Manager", function () {
     it("Can get all properties", async () => {
       const propertyManager = await deploy();
       const properties = await propertyManager.getProperties(0, 0);
-      console.log(properties);
+      // console.log(properties);
       expect(properties).to.be.deep.equal([[], 0, 0]);
     });
 
@@ -93,7 +93,7 @@ describe("Property Manager", function () {
       );
 
       const properties = await propertyManager.getProperties(0, 1);
-      console.log(properties);
+      // console.log(properties);
       expect(properties[0][0].name).to.be.equal("La Vilas");
     });
 
@@ -170,7 +170,9 @@ describe("Property Manager", function () {
         property.fundStorage
       );
 
-      console.log(await fundStorage.getUserShare(a.address));
+      expect(await ousd.balanceOf(fundStorage.address)).to.be.equal(0)
+
+      // console.log(await fundStorage.getUserShare(a.address));
     });
 
     it("Can get user share", async () => {
@@ -214,7 +216,7 @@ describe("Property Manager", function () {
       await ousd.connect(a).approve(propertyManager.address, "20000");
       propertyManager.addProfit(0, "20000");
       const profit = await fundStorage.profit();
-      console.log(profit);
+      // console.log(profit);
       expect(profit).to.be.equal("20000");
     });
 
@@ -241,28 +243,62 @@ describe("Property Manager", function () {
       await ousd.connect(a).approve(propertyManager.address, "2000000");
       propertyManager.addProfit(0, "2000000");
       const profit = await fundStorage.profit();
-      console.log(await ousd.balanceOf(a.address));
+      // console.log(await ousd.balanceOf(a.address));
       expect(profit).to.be.equal("2000000");
       
       //Actual
       const withdrawableProfits = await fundStorage.getWithdrawableProfits(a.address);
       // console.log(withdrawableProfits)
       await propertyManager.withdrawProfits(0);
-      // console.log(await fundStorage.balance())
-      // console.log(await ousd.balanceOf(a.address));
-      // expect(await ousd.balanceOf(fundStorage.address)).to.be.equal("1000");
-      
-      //Try withdrawing again
       const withdrawableProfits2 = await fundStorage.getWithdrawableProfits(a.address);
-      console.log(withdrawableProfits2)
-      // await propertyManager.withdrawProfits(0);
-      // console.log(await fundStorage.balance())
-      // console.log(await ousd.balanceOf(a.address));
+      // console.log(withdrawableProfits2)
+        expect(withdrawableProfits2).to.be.equal(0)
+    });
+    it("User manager can accurately get payment data", async () => {
+      //Setup
+      const { ousd, propertyManager, userManager } = await deploySeperate();
+      await propertyManager.createNewProperty(
+        "La Vilas",
+        "1000",
+        ["dytyatt"],
+        "Unknown"
+      );
+      await ousd.connect(a).approve(propertyManager.address, "103");
+      await propertyManager.connect(a).fundProperty(0, "103");
+      await ousd.connect(a).approve(propertyManager.address, "103");
+      await propertyManager.connect(a).fundProperty(0, "103");
+      const property = await propertyManager.getProperty(0);
 
+      const fundStorage = await ethers.getContractAt(
+        "FundStorage",
+        property.fundStorage
+      );
+
+      await ousd.connect(a).approve(propertyManager.address, "2000000");
+      propertyManager.addProfit(0, "2000000");
+      const profit = await fundStorage.profit();
+      // console.log(await ousd.balanceOf(a.address));
+      expect(profit).to.be.equal("2000000");
+      //Actual
+      const withdrawableProfits = await fundStorage.getWithdrawableProfits(a.address);
+      await propertyManager.withdrawProfits(0);
       const user = await userManager.getUser(a.address);
       console.log(user.fundings);
-      console.log(user.totalFunds);
-      console.log(user.assetsFunded);
+      // console.log(user.totalFunds);
+      // console.log(user.assetsFunded);
+
+      expect(user.totalFunds).to.be.equal(206)
+      expect(user.assetsFunded).to.be.equal(2)
     });
+
+    it("User Manager can set correct username", async ()=>{
+      const {userManager} = await deploySeperate()
+
+      userManager.setUsername("Ionic")
+
+      expect((await userManager.getUser(a.address)).username).to.be.equal("Ionic")
+    })
+
+    // it("")
   });
 });

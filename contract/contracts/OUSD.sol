@@ -14,6 +14,6 @@ contract OverfundedUSD is ERC20i {
     }
 
     function requestTokens() public {
-        _mint(address(msg.sender), 100_000_000 * 10 ** uint256(decimals()));
+        _mint(address(msg.sender), 100_000 * 10 ** uint256(decimals()));
     }
 }

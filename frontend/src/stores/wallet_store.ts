@@ -1,40 +1,85 @@
-import { ref, computed } from "vue";
+import { ref, computed, handleError } from "vue";
 import { defineStore } from "pinia";
-import { Contract, ethers } from "ethers";
-import type { User } from "@/models/User";
+import { Contract, ethers, Signer } from "ethers";
+import type {
+  UserStructOutput,
+  UserManager,
+} from "../../../contract/typechain-types/contracts/UserManager";
+import UserManagerJson from "../../../contract/artifacts/contracts/UserManager.sol/UserManager.json";
+import { EventManager } from "@/main";
+import { NETWORK_PARAMETERS, USER_MANAGER_CONTRACT } from "@/config";
+import { ToastType } from "@/events";
+import { Property } from "@/models/Property";
+
+let provider: ethers.providers.Web3Provider | null = null;
+let signer: Signer | null = null;
+let userManager: (UserManager & Contract) | null = null;
+
+export const ETH_STUFF = { provider, signer, userManager };
 
 export const usewalletStore = defineStore("wallet", () => {
   const wallet = ref();
   const isConnected = ref<boolean>(false);
-  const userData = ref<User>()
+  const user = ref<UserStructOutput>();
+  const isLoading = ref<boolean>(false);
 
-  const provider = ref<ethers.providers.Web3Provider>();
-  const signer = ref<ethers.Signer>();
-  const contract = ref<Contract>();
+  function _handleError(e: any) {
+    if (e.code == "ACTION_REJECTED")
+      EventManager.emit("toast", {
+        message: "Transaction Rejected",
+        type: ToastType.ERROR,
+      });
+    else
+      EventManager.emit("toast", {
+        message: "Transaction failed",
+        type: ToastType.ERROR,
+      });
+  }
 
-  async function _getUser(address: string) {
-    //Try to get user from User Manager Contract;
-    userData.value = {
-      username: "Daniels",
+  async function _getOrRefreshUser() {
+    isLoading.value = true;
+    try {
+      if (userManager) user.value = await userManager.getUser(wallet.value);
+      isLoading.value = false;
+      return user.value;
+    } catch (e) {
+      isLoading.value = false;
+      _handleError(e);
     }
   }
 
-  //Test Get Wallet Address
+  EventManager.on("dataUpdated", async () => {
+    await _getOrRefreshUser();
+  });
 
   async function connect() {
-    const accounts = await (window as any).ethereum.request({
-      method: "eth_requestAccounts",
-    });
-    console.table(accounts);
-    wallet.value = accounts[0];
-    _getUser(wallet.value)
-    provider.value = new ethers.providers.Web3Provider(
-      (window as any).ethereum
-    );
+    if (isConnected.value) return;
+    try {
+      await (window as any).ethereum.request({
+        method: "wallet_addEthereumChain",
+        params: [NETWORK_PARAMETERS],
+      });
 
-    signer.value = provider.value.getSigner();
-    // contract.value = new ethers.Contract()
-    isConnected.value = true;
+      const accounts = await (window as any).ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      wallet.value = accounts[0];
+      provider = new ethers.providers.Web3Provider((window as any).ethereum);
+      signer = provider.getSigner();
+      userManager = new ethers.Contract(
+        USER_MANAGER_CONTRACT!,
+        UserManagerJson.abi,
+        signer
+      ) as UserManager;
+      isConnected.value = true;
+      await _getOrRefreshUser();
+      EventManager.emit("connectOrUpdatedUser");
+    } catch (e) {
+      EventManager.emit("toast", {
+        message: "An error occured",
+        type: ToastType.ERROR,
+      });
+    }
   }
 
   function disconnect() {
@@ -43,15 +88,77 @@ export const usewalletStore = defineStore("wallet", () => {
     isConnected.value = false;
   }
 
-  const user = computed(() => {
+  async function getUser() {
+    return _getOrRefreshUser();
+  }
+
+  const walletAddressOrUsername = computed(() => {
     if (!isConnected.value) return null;
-    if(userData.value) return userData.value.username;
+    if (user.value?.username) return user.value.username;
     return (
       (wallet.value as string).slice(0, 4) +
       "..." +
-      wallet.value.slice(wallet.value.length - 5, wallet.value.length - 1)
+      wallet.value.slice(wallet.value.length - 4, wallet.value.length)
     );
   });
 
-  return { wallet, connect, disconnect, user, isConnected };
+  const walletAddress = computed(() => {
+    if (!isConnected.value) return null;
+    return (
+      (wallet.value as string).slice(0, 4) +
+      "..." +
+      wallet.value.slice(wallet.value.length - 4, wallet.value.length)
+    );
+  });
+
+  const changeUsername = async (username: string) => {
+    try {
+      const tx = await userManager?.setUsername(username);
+      await tx?.wait();
+      EventManager.emit("toast", {
+        message: "Username changed successfully",
+        type: ToastType.SUCCESS,
+      });
+      EventManager.emit("dataUpdated");
+    } catch (e) {
+      _handleError(e);
+    }
+  };
+
+  const changeLogoUrl = async (logoUrl: string) => {
+    try {
+      const tx = await userManager?.setUserLogo(logoUrl);
+      await tx?.wait();
+      EventManager.emit("toast", {
+        message: "Logo Url changed successfully",
+        type: ToastType.SUCCESS,
+      });
+      EventManager.emit("dataUpdated");
+    } catch (e) {
+      _handleError(e);
+    }
+  };
+
+  const mintPropertyNFT = async (funding: number) => {
+    try {
+      await userManager?.mintPropertyNFT(funding);
+    } catch (e) {
+      _handleError(e);
+    }
+  };
+
+  return {
+    wallet,
+    connect,
+    disconnect,
+    walletAddressOrUsername,
+    isConnected,
+    getUser,
+    user,
+    walletAddress,
+    isLoading,
+    changeLogoUrl,
+    changeUsername,
+    mintPropertyNFT,
+  };
 });

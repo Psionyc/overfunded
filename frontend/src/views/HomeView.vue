@@ -122,7 +122,7 @@
         <h2 class="font-semibold text-[32px]">Q&A</h2>
       </div>
       <Faq />
-      <Faq />
+      <Faq question="How are incentives distributed?" answer="Incentives are distributed based on the amount the funders funded..."/>
     </section>
     <section name="Stats" class="w-full mt-16">
       <div class="flex gap-2 w-full mt-6 items-center">
@@ -173,7 +173,6 @@ import { RouterLink } from "vue-router";
 
 <style scoped lang="scss">
 .squiggly {
-
   width: calc(100% + 100px);
 }
 </style>

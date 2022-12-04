@@ -4,7 +4,7 @@
       class="flex q self-start w-full max-w-[500px]  min-h-[72px]  bg-[#0F3B7E] rounded-tr-[32px] rounded-bl-[32px] rounded-br-[32px] px-8 py-6"
     >
       <p class="font-light text-[20px] max-w-[420px]">
-        What happens when an asset is rebuffed?
+        {{question?? 'What happens when an asset is rebuffed?'}}
       </p>
     </div>
     <div
@@ -12,7 +12,7 @@
     >
    
       <p class="font-light text-[20px] max-w-[420px]">
-        Funds gathered for the procurement of the asset are refunded...
+        {{answer ?? 'Funds gathered for the procurement of the asset are refunded...'}}
       </p>
     </div>
   </div>
@@ -20,10 +20,10 @@
 
 <script setup lang="ts">
 export interface FaqProps {
-  title?: string;
-  subtitle?: string;
+  question?: string;
+  answer?: string;
 }
-const { title, subtitle } = defineProps<FaqProps>();
+const { question, answer} = defineProps<FaqProps>();
 </script>
 
 <style scoped>
