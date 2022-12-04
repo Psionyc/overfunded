@@ -152,8 +152,10 @@ const fund = async () => {
   }
   loading.value = true;
   console.log(inputValues.amount, inputValues.note);
-  const data = await propertyStore.fundProperty(property.id, inputValues.amount);
-  loading.value = false;
+  const data = await propertyStore.fundProperty(property.id, inputValues.amount).finally(()=>{
+    loading.value  = false
+  })
+
   EventManager.emit("closeModal");
 };
 </script>

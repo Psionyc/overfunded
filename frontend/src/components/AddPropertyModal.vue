@@ -31,22 +31,22 @@
 
       <div class="flex items-center px-4 gap-4 justify-between">
         <button
-          @click="setPrice(500_000)"
+          @click="setPrice(10_000)"
           class="bg-greenish font-semibold text-[20px] px-4 py-2 rounded-xl text-center"
         >
-          500k
+          10K
         </button>
         <button
-          @click="setPrice(1_000_000)"
+          @click="setPrice(50_000)"
           class="bg-greenish font-semibold text-[20px] px-4 py-2 rounded-xl"
         >
-          1M
+          50K
         </button>
         <button
-          @click="setPrice(10_000_000)"
+          @click="setPrice(100_000)"
           class="bg-greenish font-semibold text-[20px] px-4 py-2 rounded-xl"
         >
-          10M
+          100K
         </button>
       </div>
       <label class="self-start font-semibold text-[18px] ml-2" for="note"
@@ -61,7 +61,7 @@
         />
       </div>
       <label class="self-start font-semibold text-[18px] ml-2" for="note"
-        >Image</label
+        >Image (url)</label
       >
       <div class="h-12 bg-black/20 rounded-[16px] py-2 px-4 w-full text-[20px]">
         <input

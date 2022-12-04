@@ -76,7 +76,7 @@
     <div class="flex rounded-full bg-black/20 w-[90%] items-center mb-4">
       <input
         v-model="inputState.logoUrl"
-        placeholder="Logo Url"
+        placeholder="Avatar Url"
         type="text"
         class="w-full px-4 bg-transparent border-none outline-none"
       />
@@ -310,13 +310,13 @@ const changeUsername = async () => {
 const changeLogoUrl = async () => {
   if (inputState.logoUrl == "") {
     return EventManager.emit("toast", {
-      message: "Logo Url field is empty",
+      message: "Avatar url field is empty",
       type: ToastType.WARNING,
     });
   }
   if (inputState.logoUrl == userDataState.logoUrl) {
     return EventManager.emit("toast", {
-      message: "Logo Url is same as in database",
+      message: "Avatar url is same as in database",
       type: ToastType.WARNING,
     });
   }
