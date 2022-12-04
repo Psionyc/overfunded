@@ -10,7 +10,14 @@ const config: HardhatUserConfig = {
       url: "https://rpc-mumbai.maticvigil.com",
       chainId: 80001,
       accounts: [
-        process.env.PRIVATE_KEY_1 ?? "0d647a62d6c707605360eb066d2f6fc23fe5c005fa6c2f5590b609e503102320"
+        process.env.PRIVATE_KEY_1!
+      ]
+    },
+    polygon :{
+      url: "https://polygon-rpc.com",
+      chainId: 137,
+      accounts: [
+        process.env.PRIVATE_KEY_1!
       ]
     }
   }

@@ -8,10 +8,10 @@
     "compile": "npx hardhat test",
     "deploy:node": "npx hardhat run --network localhost scripts/deploy.ts",
     "deploy:testnet": "npx hardhat run --network mumbai scripts/deploy.ts",
-    "deploy:mainnet": "npx hardhat run --network mainnet scripts/deploy.ts"
+    "deploy:mainnet": "npx hardhat run --network polygon scripts/deploy.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Psyonic",
   "license": "ISC",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",

@@ -19,15 +19,25 @@ npm run test
 
 ## Steps to take to deploy the project
 There are currently three different networks
-- Mainnet
-- Testnet
-- Node
+- Mainnet (Polygon Mainnet)
+- Testnet (Mumbai Testnet)
+- Node (Hardhat Node)
   
 For the 'Node' you must have a node running, boot up one by using the command below:
 ```shell
 npx hardhat node
 ```
+After all the criteria above have been fulfilled run any of the commands to target each network respectively
 
+```shell
+npm run deploy:mainnet
+```
+```shell
+npm run deploy:testnet
+```
+```shell
+npm run deploy:node
+```
 
 ```shell
 npx hardhat help
