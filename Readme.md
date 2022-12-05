@@ -40,7 +40,7 @@ Check out [What to Test](https://github.com/Psionyc/overfunded/#what-to-test)
 **Change LogoUrl:** Again if you have an image url for an avater you can also use it for your logo/avatar url.  
 
 **Mint NFT**: To prove you funded a property you have access to a mint function to get an official test nft.  
-
+You can check all your nfts on [Opensea (Overfunded NFT v4)](https://testnets.opensea.io/collection/overfundednft-v4)
 ## Major Contracts and Functionalities
 
 - ERC720i.sol
