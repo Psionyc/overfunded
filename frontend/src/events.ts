@@ -1,17 +1,17 @@
-import type { ethers } from "ethers";
-
 export type AppEvents = {
-  openModal: any;
-  openFundModal: OpenFundModal;
-  closeModal: any;
-  connectOrUpdatedUser: any;
-  propertyFounded: PropertyFunded;
-  openAddPropertyModal: any;
-  toast: Toast;
-  openUserDataModal: any;
+  openModal: any
+  openFundModal: OpenFundModal
+  closeModal: any
+  connectOrUpdatedUser: any
+  propertyFounded: PropertyFunded
+  openAddPropertyModal: any
+  toast: Toast
+  openUserDataModal: any
   dataUpdated: any;
   openUniversalLoader: any 
   closeUniversalLoader: any
+  openMobileMenu: any
+  closeMobileMenu: any
 };
 
 export enum ToastType {

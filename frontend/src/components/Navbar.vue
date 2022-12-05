@@ -11,12 +11,16 @@
       <RouterLink to="/fund"><h4>Properties</h4></RouterLink>
       <RouterLink to="/faucet"><h4>Faucet</h4></RouterLink>
     </div>
-    <img class="h-[24px] md:hidden block" src="@/assets/images/menu.svg" alt="" srcset="">
+    <img @click="EventManager.emit('openMobileMenu')" class="h-[24px] md:hidden block" src="@/assets/images/menu.svg" alt="" srcset="">
   </div>
+  <MobileMenu/>
+  
 </template>
 
 <script setup lang="ts">
 import type { RouterLink } from "vue-router";
+import MobileMenu from "./MobileMenu.vue";
+import { EventManager } from "@/main";
 </script>
 
 <style scoped></style>

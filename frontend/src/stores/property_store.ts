@@ -19,7 +19,7 @@ let propertyManager: (PropertyManager & BaseContract) | null = null;
 let ousd: (OverfundedUSD & BaseContract) | null = null;
 let signer: ethers.Signer | null = null;
 
-const limit = 20;
+const limit = 7;
 
 export enum SortBy {
   NONE = "Sort By",
@@ -43,7 +43,7 @@ export const usePropertyStore = defineStore("property", () => {
     ) as PropertyManager;
     isLoading.value = true;
     propertyManager
-      ?.getProperties(0, 20)
+      ?.getProperties(0, limit + next.value)
       .then((v) => {
         properties.value = v.props;
         next.value = v.nextOffset.toNumber();
@@ -120,22 +120,17 @@ export const usePropertyStore = defineStore("property", () => {
       });
   }
 
-  function getNextPaginatedProperties() {
-    propertyManager?.getProperties(0, 20).then((v) => {
-      properties.value = [...properties.value, ...v.props];
-      next.value = v.nextOffset.toNumber();
-    });
+  async function getNextPaginatedProperties() {
+    try {
+      const v = await propertyManager?.getProperties(next.value,limit)
+      properties.value = [...properties.value, ...v!.props];
+      next.value = v!.nextOffset.toNumber();
+    } catch (error) {
+      _handleError(error)
+    }
   }
 
-  function inrementPropertyFunds(property: number, funds: number) {
-    const propertiesClone = [...properties.value];
-    const prop = propertiesClone[property];
-    const value = prop.funds.add(funds);
-    (prop as any).funds = value;
-
-    properties.value = propertiesClone;
-    console.log(properties.value[property].funds.toNumber(), value.toNumber());
-  }
+  
 
   async function fundProperty(property: number, amount: number) {
     try {
