@@ -41,8 +41,8 @@
 
     <section
       name="Perks"
-      v-show="false"
-      class="w-full h-[360px] bg-main/20 rounded-[32px] mt-16 px-[5%] justify-between flex relative overflow-visible"
+      
+      class="w-full h-[360px] hidden lg:flex bg-main/20 rounded-[32px] mt-16 px-[5%] justify-between relative overflow-visible"
     >
       <div class="top-[30%] squiggly left-[-50px] z-[-1] absolute">
         <img src="@/assets/images/squiggly.svg" class="w-full" />
@@ -62,10 +62,10 @@
           />
         </div>
 
-        <div class="flex flex-col justify-center items-center gap-6 pt-16">
+        <div class="flex flex-col justify-center items-center gap-4 pt-16">
           <p class="font-bold text-[28px]">High ROIs</p>
-          <p class="font-semibold text-[20px]">
-            Great returns for shares
+          <p class="font-semibold text-[20px] text-center px-2">
+            Great massive returns for shares
           </p>
         </div>
       </div>
@@ -83,7 +83,7 @@
           />
         </div>
 
-        <div class="flex flex-col justify-center items-center gap-6 pt-16">
+        <div class="flex flex-col justify-center items-center gap-4 pt-16">
           <p class="font-bold  text-[28px]">Security</p>
           <p class="font-semibold text-center text-[20px] max-w-[200px]">
             Guaranteed protection on each asset
@@ -104,7 +104,7 @@
           />
         </div>
 
-        <div class="flex flex-col justify-center items-center gap-6 pt-16">
+        <div class="flex flex-col justify-center items-center gap-4 pt-16">
           <p class="font-bold text-[28px]">Connection</p>
           <p class="font-semibold text-[20px] max-w-[200px] text-center">
             Connect with resources over the world with lower risks
