@@ -10,7 +10,7 @@
 
 The average person wants to own propetries that yield profits but they probably don't have a million to throw around but they can start with a thousand... This product (MVP) allows users to own shares of real life products with blockchain proof and get profits when the property yields profit...
 
-> > **Note:** Read How to use below
+> > **Note**: Read How to use below
 
 ## Brief Description
 
@@ -29,7 +29,7 @@ Check out [What to Test](https://github.com/Psionyc/overfunded/#what-to-test)
 
 ## What to test
 
-**Fund Property**: On the funding page there are lots of properties you can fund if you have OUSD, FUND AWAY!!.  
+**Fund Property**: On the funding page there are lots of properties you can fund if you have OUSD, Fund Away!.  
 
 **Add Property**: You can also add properties to your heart content... You can get image links from any image provider.  
 
@@ -129,4 +129,4 @@ Challenges I faced during the frontend development process are:
 
 **Hexadecimal ChainID**: ChainIDs are naturally encoded as a decimal number on websites like https://chainlist.org but metamask requires hexadecimal chainIDs or it will throw an error
 
-**Hexadecimal Comparism**: Hexadecimals can be stored in different cases therefore comparing them directly gave a bug till it was compared under the same case (i.e Lower case or Upper case)...
+**Hexadecimal Comparism**: Hexadecimals can be stored in different cases therefore comparing them directly gave a bug till it was compared under the same case (i.e Lower case or Upper case). For Example 0xabcd && 0xABCD will be considered equal on-chain but different off-chain
