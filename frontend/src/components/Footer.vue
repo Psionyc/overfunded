@@ -3,10 +3,11 @@
     <h5 class="font-semibold text-[24]">Overfunded © 2022</h5>
     <div class="flex gap-2 items-center">
         <h5 class="font-bold text-[20]">Github</h5>
-        <img src="@/assets/images/github.svg" alt="" srcset="">
+        <a href="https://github.com/Psionyc/overfunded"><img src="@/assets/images/github.svg" alt="" srcset=""></a>
     </div>
  </div>
 </template>
+
 
 <script setup lang="ts">
 

@@ -1,5 +1,6 @@
 node_modules/
 node_*/
 cache/
+backend/
 dist/
 .env*

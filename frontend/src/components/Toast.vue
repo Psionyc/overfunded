@@ -1,12 +1,12 @@
 <template>
   <div
     v-show="show"
-    class="toast w-[0%] max-w-[700px] rounded-r-full mx-auto fixed justify-center items-center left-0 bottom-[10px] h-[80px] flex gap-2 px-6"
+    class="toast w-[0%] max-w-[700px] rounded-r-full mx-auto fixed justify-center items-center left-0 bottom-[10px] h-[80px] max-h-[120px] flex gap-2 px-6"
     :style="{
       'background-color': `${background}`,
     }"
   >
-    <p v-show="showText" class="text-[24px]">
+    <p v-show="showText" class="text-[24px] text-center">
       {{ message }}
     </p>
   </div>
