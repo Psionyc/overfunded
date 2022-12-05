@@ -29,18 +29,34 @@ Check out [What to Test](https://github.com/Psionyc/overfunded/#what-to-test)
 
 ## What to test
 
-**Fund Property**: On the funding page there are lots of properties you can fund if you have OUSD, Fund Away!.  
+**Fund Property**: On the funding page there are lots of properties you can fund if you have OUSD, Fund Away!.
 
-**Add Property**: You can also add properties to your heart content... You can get image links from any image provider.  
+**Add Property**: You can also add properties to your heart content... You can get image links from any image provider.
 
-**Withdraw Funds**: For testing purposes the assets are set to verified automatically which allows fund withhdrawals for owners of the properties (i.e The user who initially added the property).  
+**Withdraw Funds**: For testing purposes the assets are set to verified automatically which allows fund withhdrawals for owners of the properties (i.e The user who initially added the property).
 
-**Change Username**: Yes you can also change your username by clicking on your wallet address.  
+**Change Username**: Yes you can also change your username by clicking on your wallet address.
 
-**Change LogoUrl:** Again if you have an image url for an avater you can also use it for your logo/avatar url.  
+**Change LogoUrl:** Again if you have an image url for an avater you can also use it for your logo/avatar url.
 
 **Mint NFT**: To prove you funded a property you have access to a mint function to get an official test nft.  
 You can check all your nfts on [Opensea (Overfunded NFT v4)](https://testnets.opensea.io/collection/overfundednft-v4)
+
+## My Environment
+Below is a list showcasing the public environment variables used, otherwise sensitive data have been removed from the list
+```
+VITE_PROPERTY_MANAGER = "0xC3d5Fc23aD9f7cE34c16C2dF4048f23f27efEB32"
+VITE_USER_MANAGER = "0xc4BF59Ac1E3588F74Ba24D431bBFc2f685DA6454"
+VITE_OUSD = "0x867637d200E0f44211323D1Fe8B7edCb995B45Dc"
+VITE_CURRENCY_SYMBOL = "MATIC"
+VITE_CURRENCY_NAME = "Matic"
+VITE_NETWORK_URL  = "https://rpc-mumbai.maticvigil.com"
+VITE_CHAIN_ID = "0x13881"
+VITE_CHAIN_NAME = "Mumbai Testnet"
+VITE_DECIMALS = 18
+VITE_BACKEND_URL = ""
+```
+
 ## Major Contracts and Functionalities
 
 - ERC720i.sol
@@ -118,7 +134,7 @@ Challenges I faced during the contract development process are:
 
 1. Use the ERC777 contract [ERC77](https://docs.openzeppelin.com/contracts/4.x/erc777)
 2. Use the ERC20 and call two separate functions.  
-    I went with the second option since the ERC777 contract isn't very vast at the momen, changing to the ERC777 standard might be considered in the future
+   I went with the second option since the ERC777 contract isn't very vast at the momen, changing to the ERC777 standard might be considered in the future
 
 ## Frontend Development Challenges
 
