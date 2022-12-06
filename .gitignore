@@ -4,6 +4,3 @@ cache/
 dist/
 uploads/
 .env*
-contract/artifacts/
-*/contract/cache/
-*/contract/typechain-types/
