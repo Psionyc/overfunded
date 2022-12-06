@@ -2,4 +2,8 @@ node_modules/
 node_*/
 cache/
 dist/
+uploads/
 .env*
+contract/artifacts/
+*/contract/cache/
+*/contract/typechain-types/

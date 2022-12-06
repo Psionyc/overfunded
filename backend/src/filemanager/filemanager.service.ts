@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as fs from 'fs'
+import { Success } from 'src/shared';
 
 @Injectable()
 export class FilemanagerService {
@@ -18,6 +19,9 @@ export class FilemanagerService {
 
     fs.createWriteStream(`./uploads/` + file).write(JSON.stringify(metadata))
     
-    return file
+    return Success({
+      message: "Metadata Successfully Created",
+      result: file,
+    }) 
   }
 }

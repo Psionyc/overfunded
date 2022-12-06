@@ -3,4 +3,5 @@ body {
   background-color: #181818;
   color: white;
   width: 100vw;
+  overflow-x: hidden;
 }

@@ -6,7 +6,7 @@
       'background-color': `${background}`,
     }"
   >
-    <p v-show="showText" class="text-[24px] text-center">
+    <p v-show="showText" class="text-[18px] font-semibold text-center">
       {{ message }}
     </p>
   </div>

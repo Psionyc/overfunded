@@ -1,4 +1,4 @@
-@import './base.css';
+@import "./base.css";
 
 @tailwind base;
 @tailwind components;
@@ -10,4 +10,5 @@
   height: 100vh;
   margin: 0 auto;
   font-weight: normal;
+  
 }

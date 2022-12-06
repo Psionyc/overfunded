@@ -317,7 +317,7 @@ export interface OverfundedNFT extends BaseContract {
     safeMint(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      uri: PromiseOrValue<string>,
+      _uri: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
@@ -405,7 +405,7 @@ export interface OverfundedNFT extends BaseContract {
   safeMint(
     to: PromiseOrValue<string>,
     tokenId: PromiseOrValue<BigNumberish>,
-    uri: PromiseOrValue<string>,
+    _uri: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -491,7 +491,7 @@ export interface OverfundedNFT extends BaseContract {
     safeMint(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      uri: PromiseOrValue<string>,
+      _uri: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -624,7 +624,7 @@ export interface OverfundedNFT extends BaseContract {
     safeMint(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      uri: PromiseOrValue<string>,
+      _uri: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
@@ -713,7 +713,7 @@ export interface OverfundedNFT extends BaseContract {
     safeMint(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      uri: PromiseOrValue<string>,
+      _uri: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 

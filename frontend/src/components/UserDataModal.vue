@@ -106,17 +106,20 @@
             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
           ></path>
         </svg>
-        <p v-if="loadingState.changingLogoUrl">Changing</p>
-        <p v-else>Change</p>
+        <p v-if="loadingState.changingLogoUrl">Uploading</p>
+        <p v-else>Upload</p>
       </button>
     </div>
 
     <div class="overflow-scroll w-full h-full">
-      <div v-if="(userDataState.fundings.length <= 0)" class="grid place-items-center h-[300px]">
+      <div
+        v-if="userDataState.fundings.length <= 0"
+        class="grid place-items-center h-[300px]"
+      >
         <p>You haven't funded any property yet</p>
       </div>
       <div
-      v-else
+        v-else
         v-for="(funding, index) in userDataState.fundings"
         class="flex bg-black/20 w-full mb-4 px-4 py-2"
       >
@@ -154,34 +157,34 @@
             >
           </p>
           <button
-        class="font-semibold px-2 py-2 bg-greenish rounded-full w-[120px] min-w-[120px] flex items-center justify-center gap-2"
-        @click="mintPropertyNFT(index)"
-        :disabled="!walletStore.isConnected || loading"
-      >
-        <svg
-          v-if="loadingState.mintingNFT"
-          class="animate-spin max-h-[16px] min-w-[16px] text-white"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            class="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            stroke-width="4"
-          ></circle>
-          <path
-            class="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          ></path>
-        </svg>
-        <p v-if="loadingState.mintingNFT">Minting</p>
-        <p v-else>Mint</p>
-      </button>
+            class="font-semibold px-2 py-2 bg-greenish rounded-full w-[120px] min-w-[120px] flex items-center justify-center gap-2"
+            @click="mintPropertyNFT(index)"
+            :disabled="!walletStore.isConnected || loading"
+          >
+            <svg
+              v-if="loadingState.mintingNFT"
+              class="animate-spin max-h-[16px] min-w-[16px] text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+            <p v-if="loadingState.mintingNFT">Minting</p>
+            <p v-else>Mint</p>
+          </button>
         </div>
       </div>
     </div>
@@ -195,6 +198,8 @@ import { computed, onMounted, reactive, ref } from "vue";
 import type { UserFundingStructOutput } from "../../../contract/typechain-types/contracts/UserManager";
 import { animate } from "motion";
 import { ToastType } from "@/events";
+import { createMetadata } from "@/shared/functions";
+
 interface UserDataState {
   username: string;
   fundings: UserFundingStructOutput[];
@@ -214,7 +219,11 @@ const loadingState = reactive({
 });
 
 const loading = computed(() => {
-  return loadingState.changingLogoUrl || loadingState.changingUsername || loadingState.mintingNFT;
+  return (
+    loadingState.changingLogoUrl ||
+    loadingState.changingUsername ||
+    loadingState.mintingNFT
+  );
 });
 
 const userDataState = reactive<UserDataState>({
@@ -237,7 +246,7 @@ EventManager.on("connectOrUpdatedUser", () => {
   const user = walletStore.user;
   userDataState.username = user!.username;
   inputState.username = user!.username;
-  userDataState.fundings = user!.fundings;
+  userDataState.fundings = user!.fundings as any;
   userDataState.totalFunding = user!.totalFunds.toNumber();
   userDataState.logoUrl = user!.logoUrl;
 });
@@ -245,7 +254,7 @@ EventManager.on("dataUpdated", async () => {
   const user = await walletStore.getUser();
   inputState.username = user!.username;
   userDataState.username = user!.username;
-  userDataState.fundings = user!.fundings;
+  userDataState.fundings = user!.fundings as any;
   userDataState.totalFunding = user!.totalFunds.toNumber();
   userDataState.logoUrl = user!.logoUrl;
 });
@@ -324,14 +333,15 @@ const changeLogoUrl = async () => {
   await walletStore.changeLogoUrl(inputState.logoUrl);
   loadingState.changingLogoUrl = false;
 };
-const mintPropertyNFT =async (index: number) =>{
 
+const mintPropertyNFT = async (index: number) => {
   loadingState.mintingNFT = true;
-  await walletStore.mintPropertyNFT(index).finally(()=>{
-    loadingState.mintingNFT = false
+  const img = userDataState.fundings[index].property.baseImage;
+  const metadataUrl = await createMetadata(img);
+  await walletStore.mintPropertyNFT(index, metadataUrl).finally(() => {
+    loadingState.mintingNFT = false;
   });
-
-}
+};
 </script>
 
 <style scoped>

@@ -10,13 +10,14 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "axios": "^1.2.1",
     "debounce": "^1.2.1",
     "ethers": "^5.7.2",
-    "lodash": "^4.17.21",
     "mitt": "^3.0.0",
     "motion": "^10.14.3",
     "pinia": "^2.0.23",
     "sass": "^1.56.1",
+    "validator": "^13.7.0",
     "vue": "^3.2.41",
     "vue-router": "^4.1.5",
     "vue-timer-hook": "^1.0.36"
@@ -25,6 +26,7 @@
     "@types/debounce": "^1.2.1",
     "@types/lodash": "^4.14.191",
     "@types/node": "^16.11.68",
+    "@types/validator": "^13.7.10",
     "@vitejs/plugin-vue": "^3.1.2",
     "@vitejs/plugin-vue-jsx": "^2.0.1",
     "@vue/tsconfig": "^0.1.3",

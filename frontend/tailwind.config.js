@@ -15,7 +15,6 @@ module.exports = {
         "gradient-stop": "#350981",
         "dark-bluish":"#0F3B7E",
         "dark-greenish":"#3A726B",
-
       }
     },
   },

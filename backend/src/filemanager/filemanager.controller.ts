@@ -11,11 +11,12 @@ import {
 import { UseInterceptors } from '@nestjs/common/decorators/core/use-interceptors.decorator';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
-import { diskStorage } from 'multer';
+import { diskStorage, Multer } from 'multer';
 import { extname } from 'path';
+import { Success } from 'src/shared';
 import { FilemanagerService } from './filemanager.service';
 
-@Controller('filemanager')
+@Controller('files')
 export class FilemanagerController {
   constructor(private readonly filemanagerService: FilemanagerService) {}
 
@@ -35,7 +36,10 @@ export class FilemanagerController {
     }),
   )
   upload(@UploadedFile() file) {
-    console.log(file);
+    return Success<string>({
+      message: 'Uploaded a file successfully',
+      result: file.filename,
+    });
   }
 
   @Get('/:imgPath')
@@ -44,7 +48,7 @@ export class FilemanagerController {
   }
 
   @Post('create-metadata')
-  createMetadata(@Body('image') image: string ){
-    return this.filemanagerService.createNewMetadataEntity(image)
+  createMetadata(@Body('image') image: string) {
+    return this.filemanagerService.createNewMetadataEntity(image);
   }
 }
