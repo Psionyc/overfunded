@@ -11,50 +11,56 @@
       <label class="self-start font-semibold text-[18px] ml-4" for="note"
         >Name</label
       >
-      <div class="h-12 bg-black/20 rounded-[16px] py-2 px-4 w-full text-[20px]">
+      <div class="bg-black/20 rounded-[16px] py-4 px-4 w-full text-[20px]">
         <input
           placeholder="Property Name"
           v-model="inputValues.name"
-          name="note"
+          name="name"
           type="text"
           class="w-full h-full bg-transparent border-none outline-none"
         />
       </div>
       <label for="amount" class="self-start font-semibold text-[18px] ml-4"
-        >Price (OUSD)</label
+        >Price- (${{ formatter.format(inputValues.price) }})</label
       >
-      <div class="h-14 bg-black/20 rounded-[16px] py-2 px-4 w-full flex gap-2">
-        <input
-          v-model="inputValues.price"
-          name="amount"
-          type="number"
-          class="w-full text-center h-full bg-transparent border-none outline-none text-[20px]"
-        />
-      </div>
-      <div class="flex items-center px-4 gap-4 justify-between">
-        <button
-          @click="setPrice(10_000)"
-          class="bg-greenish font-semibold text-[20px] px-4 py-2 rounded-xl text-center"
+      <div class="w-full">
+        <div
+          class="bg-black/20 rounded-tr-[16px] rounded-tl-[16px] py-2 px-4 w-full flex gap-2"
         >
-          10K
-        </button>
-        <button
-          @click="setPrice(50_000)"
-          class="bg-greenish font-semibold text-[20px] px-4 py-2 rounded-xl"
+          <input
+            v-model="inputValues.price"
+            name="amount"
+            type="number"
+            class="w-full text-center h-full bg-transparent border-none outline-none text-[20px]"
+          />
+        </div>
+        <div
+          class="flex items-center bg-black/20 gap-1 rounded-br-[24px] rounded-bl-[24px] justify-between"
         >
-          50K
-        </button>
-        <button
-          @click="setPrice(100_000)"
-          class="bg-greenish font-semibold text-[20px] px-4 py-2 rounded-xl"
-        >
-          100K
-        </button>
+          <button
+            @click="setPrice(10_000)"
+            class="bg-greenish font-semibold w-full text-[18px] px-4 py-2 rounded-bl-[24px] text-center"
+          >
+            10K
+          </button>
+          <button
+            @click="setPrice(50_000)"
+            class="bg-greenish font-semibold w-full text-[18px] px-4 py-2"
+          >
+            50K
+          </button>
+          <button
+            @click="setPrice(100_000)"
+            class="bg-greenish font-semibold w-full text-[18px] px-4 py-2 rounded-br-[24px]"
+          >
+            100K
+          </button>
+        </div>
       </div>
       <label class="self-start font-semibold text-[18px] ml-4" for="note"
         >Location</label
       >
-      <div class="h-12 bg-black/20 rounded-[16px] py-2 px-4 w-full text-[20px]">
+      <div class="bg-black/20 rounded-[16px] py-4 px-4 w-full text-[20px]">
         <input
           placeholder="Property Location"
           v-model="inputValues.location"
@@ -66,7 +72,7 @@
       <label class="self-start font-semibold text-[18px] ml-4" for="image"
         >Image (url)</label
       >
-      <div class="h-12 bg-black/20 rounded-[16px] py-2 px-4 w-full text-[20px]">
+      <div class="bg-black/20 rounded-[16px] py-4 px-4 w-full text-[20px]">
         <input
           placeholder="Type image url or upload below"
           v-model="inputValues.image"
@@ -77,7 +83,7 @@
       </div>
       <div
         @click="uploadImage"
-        class="py-8 px-6 h-[40px] bg-greenish gap-2 flex justify-center items-center text-[18px] font-semibold rounded-md"
+        class="py-8 px-6 h-[40px] cursor-pointer bg-greenish gap-2 flex justify-center items-center text-[18px] font-semibold rounded-[24px]"
       >
         <svg
           v-if="uploadingImage"
@@ -100,7 +106,6 @@
             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
           ></path>
         </svg>
-        <p>+</p>
         <p v-if="uploadingImage">Uploading</p>
         <p v-else>Upload Image</p>
       </div>
@@ -145,6 +150,10 @@ const property = ref(0);
 const show = ref(false);
 const loading = ref(false);
 const uploadingImage = ref(false);
+const formatter = Intl.NumberFormat("en", {
+  notation: "compact",
+  maximumFractionDigits: 2,
+});
 
 const propertyStore = usePropertyStore();
 
@@ -192,7 +201,7 @@ const addProperty = async () => {
 
 *::-webkit-scrollbar-thumb {
   border-radius: 12px;
-  @apply bg-greyish/80;
+  @apply bg-greyish/60;
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

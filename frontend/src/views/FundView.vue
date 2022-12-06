@@ -10,7 +10,7 @@
       </h2>
       <h2 v-else class="font-bold text-[28px] text-ellipsis whitespace-nowrap">
         Hello
-        <span @click="openUserDataModal" class="underline open-userdata-button"
+        <span @click="openUserDataModal" class="underline open-userdata-button hover:text-greenish cursor-pointer"
           >{{ walletStore.walletAddressOrUsername }}...</span
         >
       </h2>

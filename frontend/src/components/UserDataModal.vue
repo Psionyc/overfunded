@@ -82,7 +82,7 @@
       />
       <button
         class="font-semibold px-2 py-2 bg-greenish rounded-full min-w-[120px] flex items-center justify-center gap-2"
-        @click="changeLogoUrl"
+        @click="uploadImage"
         :disabled="!walletStore.isConnected || loading"
       >
         <svg
@@ -157,12 +157,13 @@
             >
           </p>
           <button
-            class="font-semibold px-2 py-2 bg-greenish rounded-full w-[120px] min-w-[120px] flex items-center justify-center gap-2"
+            class="font-semibold px-2 py-2 bg-greenish disabled:bg-greenish/50 rounded-full w-[120px] min-w-[120px] flex items-center justify-center gap-2"
             @click="mintPropertyNFT(index)"
-            :disabled="!walletStore.isConnected || loading"
+            :disabled="(!walletStore.isConnected || loading || funding.property.minted)"
           >
             <svg
               v-if="loadingState.mintingNFT"
+              v-show="!funding.property.minted"
               class="animate-spin max-h-[16px] min-w-[16px] text-white"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -182,8 +183,10 @@
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
               ></path>
             </svg>
-            <p v-if="loadingState.mintingNFT">Minting</p>
+            <p v-if="funding.property.minted">Minted</p>
+            <p v-else-if="loadingState.mintingNFT">Minting</p>
             <p v-else>Mint</p>
+
           </button>
         </div>
       </div>
@@ -198,7 +201,7 @@ import { computed, onMounted, reactive, ref } from "vue";
 import type { UserFundingStructOutput } from "../../../contract/typechain-types/contracts/UserManager";
 import { animate } from "motion";
 import { ToastType } from "@/events";
-import { createMetadata } from "@/shared/functions";
+import { createMetadata, selectFile, uploadFile } from "@/shared/functions";
 
 interface UserDataState {
   username: string;
@@ -226,6 +229,7 @@ const loading = computed(() => {
   );
 });
 
+
 const userDataState = reactive<UserDataState>({
   username: "",
   fundings: [],
@@ -242,12 +246,27 @@ const show = ref(false);
 
 const walletStore = usewalletStore();
 
+
+async function uploadImage() {
+  loadingState.changingLogoUrl = true;
+  const file = await selectFile("image/*");
+  const uploadedFile: string = await uploadFile(file);
+  inputState.logoUrl = uploadedFile;
+  await walletStore.changeLogoUrl(inputState.logoUrl).finally(()=>{
+    loadingState.changingLogoUrl = false
+  })
+ 
+}
+
+
+
 EventManager.on("connectOrUpdatedUser", () => {
   const user = walletStore.user;
   userDataState.username = user!.username;
   inputState.username = user!.username;
-  userDataState.fundings = user!.fundings as any;
+  inputState.logoUrl = user!.logoUrl;
   userDataState.totalFunding = user!.totalFunds.toNumber();
+  userDataState.fundings = user!.fundings as any;
   userDataState.logoUrl = user!.logoUrl;
 });
 EventManager.on("dataUpdated", async () => {

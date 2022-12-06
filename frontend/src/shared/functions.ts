@@ -40,7 +40,7 @@ export function selectFile(contentType: string) {
 }
 
 export function handleFunctionErrors(e: any) {
-  console.log(e);
+  console.table(e);
   if (e.code == "ACTION_REJECTED")
     EventManager.emit("toast", {
       message: "Transaction Rejected",
