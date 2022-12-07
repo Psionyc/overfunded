@@ -123,7 +123,7 @@
         <h2 class="font-semibold text-[32px]">Q&A</h2>
       </div>
       <Faq />
-      <Faq question="How are incentives distributed?" answer="Incentives are distributed based on the amount the funders funded..."/>
+      <Faq question="How are incentives distributed?" answer="Incentives are distributed based on the shares gotten during the funding stage..."/>
     </section>
     <section data-aos="fade-up" name="Stats" class="w-full mt-16">
       <div class="flex gap-2 w-full mt-6 items-center">
