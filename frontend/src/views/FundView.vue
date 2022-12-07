@@ -79,7 +79,7 @@
       v-if="!walletStore.isConnected"
       class="grid grid-cols-1 gap-x-16 gap-y-6 py-6 px-4 md:px-8 h-[400px] place-items-center"
     >
-      <p class="font-semibold text-[18px]">
+      <p class="font-semibold text-[18px] text-center">
         Connect a wallet to view properties...
       </p>
     </div>
@@ -107,6 +107,14 @@
           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
         ></path>
       </svg>
+    </div>
+    <div
+      v-else-if="(propertyStore.sortedProperties.length <= 0)"
+      class="grid grid-cols-1 gap-x-16 gap-y-6 py-6 px-4 md:px-8 h-[400px] place-items-center"
+    >
+      <p class="font-semibold text-[18px] text-center">
+        No Properties were found. Please Check your internet
+      </p>
     </div>
 
     <div

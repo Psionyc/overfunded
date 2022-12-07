@@ -45,16 +45,16 @@ You can check all your nfts on [Opensea (Overfunded NFT v4)](https://testnets.op
 ## My Environment
 Below is a list showcasing the public environment variables used, otherwise sensitive data have been removed from the list
 ```
-VITE_PROPERTY_MANAGER = "0xC3d5Fc23aD9f7cE34c16C2dF4048f23f27efEB32"
-VITE_USER_MANAGER = "0xc4BF59Ac1E3588F74Ba24D431bBFc2f685DA6454"
-VITE_OUSD = "0x867637d200E0f44211323D1Fe8B7edCb995B45Dc"
+VITE_PROPERTY_MANAGER = "0x2dAE9299C33C63d5081823e942A2981Dc8a5494a"
+VITE_OUSD = "0x0dd279A9A03e57546B70fbe7903FdCA18c0E14d6"
+VITE_USER_MANAGER = "0x136dEb4916e6e34602Fc7cac91423CA75A630743"
 VITE_CURRENCY_SYMBOL = "MATIC"
 VITE_CURRENCY_NAME = "Matic"
 VITE_NETWORK_URL  = "https://rpc-mumbai.maticvigil.com"
 VITE_CHAIN_ID = "0x13881"
 VITE_CHAIN_NAME = "Mumbai Testnet"
 VITE_DECIMALS = 18
-VITE_BACKEND_URL = ""
+VITE_BACKEND_URL = "https://overfunded-backend-production.up.railway.app"
 ```
 
 ## Major Contracts and Functionalities
