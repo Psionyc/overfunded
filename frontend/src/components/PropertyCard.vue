@@ -63,14 +63,14 @@
     <div class="flex gap-1">
       <button
         @click="fund()"
-        class="bg-greenish h-[72px] w-full mt-6 text-[20px] font-semibold px-4 py-2"
+        class="bg-greenish h-[50px] w-full mt-6 text-[20px] font-semibold px-4 py-2"
       >
         Fund
       </button>
       <button
       :disabled="(!isOwner || notFullyFunded || withdrawLoading)"
         @click="withdraw"
-        class="bg-greenish h-[72px] w-full mt-6 text-[20px] font-semibold px-4 py-2 disabled:bg-greenish/60 flex justify-center items-center gap-2"
+        class="bg-greenish h-[50px] w-full mt-6 text-[20px] font-semibold px-4 py-2 disabled:bg-greenish/60 flex justify-center items-center gap-2"
       >
       <svg
           v-show="withdrawLoading"

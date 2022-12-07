@@ -63,7 +63,7 @@
     </div>
     <button
       @click="fund"
-      class="bg-greenish h-[72px] disabled:bg-greenish/50 mt-auto w-full text-[24px] font-semibold px-4 py-2 rounded-full flex gap-4 items-center justify-center"
+      class="bg-greenish h-[60px] disabled:bg-greenish/50 mt-auto w-full text-[20px] font-semibold px-4 py-2 rounded-full flex gap-4 items-center justify-center"
     >
       <svg
         v-if="loading"
