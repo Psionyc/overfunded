@@ -54,7 +54,7 @@ VITE_NETWORK_URL  = "https://rpc-mumbai.maticvigil.com"
 VITE_CHAIN_ID = "0x13881"
 VITE_CHAIN_NAME = "Mumbai Testnet"
 VITE_DECIMALS = 18
-VITE_BACKEND_URL = "https://overfunded-backend-production.up.railway.app"
+VITE_BACKEND_URL = "https://overfunded-backend-production.up.railway.app" 
 ```
 
 ## Major Contracts and Functionalities
