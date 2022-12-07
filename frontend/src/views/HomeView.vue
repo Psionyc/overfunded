@@ -1,167 +1,186 @@
 <template>
-  <div class="home_view w-full h-full bg-[#181818] px-2 lg:px-12">
+  <div class="home_view w-full h-full bg-[#181818] lg:px-12">
     <Navbar />
+    <div class="px-2">
+      <section
+        class="landing w-full flex flex-col items-center md:gap-2 md:justify-between md:flex-row"
+      >
+        <!-- Landing text and image -->
 
-    <section  class="landing w-full flex flex-col-reverse items-center md:gap-2 md:justify-between md:flex-row">
-      <!-- Landing text and image -->
-
-      <div class="flex flex-col gap-6 md:mt-[100px]">
-        <h1 class="font-semibold text-[28px] lg:text-[40px] text-center md:text-start">
-          Next-Gen incentivized crowdfunding on the Polygon Ecosystem
-        </h1>
-
-        <!-- CTA -->
-
-        <router-link to="/fund">
-          <button
-            class="font-medium text-[20px] bg-main/60 w-full md:w-[240px] px-4 py-2 rounded-[12px]"
+        <div class="flex flex-col gap-6 md:mt-[100px]">
+          <h1
+            class="font-semibold text-[28px] lg:text-[40px] text-center md:text-start"
           >
-            Fund Now
-          </button>
-        </router-link>
+            Next-Gen incentivized crowdfunding on the Polygon Ecosystem
+          </h1>
 
-        <!-- Quote -->
+          <img
+            src="@/assets/images/landing_images.png"
+            alt="Unknown"
+            class="w-full lg:max-w-[700px] md:max-w-[400px] md:hidden"
+          />
 
-        <div class="flex gap-4 w-[326px] items-center">
+          <div class="flex gap-4 w-[326px] items-center">
+            <div
+              class="quote-stick w-[7px] h-[40px] bg-gradient-to-b from-gradient-start to-gradient-stop rounded-full"
+            ></div>
+            <h3 class="text-white font-semibold text-[16px]">
+              Get High ROI Investments by sharing and funding
+            </h3>
+          </div>
+          <!-- CTA -->
+
+          <router-link to="/fund">
+            <button
+              class="font-medium text-[18px] bg-main/60 w-full md:w-[240px] px-4 py-2 rounded-[12px]"
+            >
+              Fund Now
+            </button>
+          </router-link>
+
+          <!-- Quote -->
+        </div>
+
+        <img
+          src="@/assets/images/landing_images.png"
+          alt="Unknown"
+          class="w-full lg:max-w-[700px] md:max-w-[400px] hidden md:block"
+        />
+      </section>
+
+      <section
+        name="Perks"
+        data-aos="fade-up"
+        class="w-full h-[360px] hidden lg:flex bg-main/20 rounded-[32px] mt-16 px-[5%] justify-between relative overflow-visible"
+      >
+        <div class="top-[30%] squiggly left-[-50px] z-[-1] absolute">
+          <img src="@/assets/images/squiggly.svg" class="w-full" />
+        </div>
+
+        <div
+          class="rounded-full w-[270px] h-[270px] bg-dark-bluish relative mt-[20px]"
+        >
           <div
-            class="quote-stick w-[7px] h-[72px] bg-gradient-to-b from-gradient-start to-gradient-stop rounded-full"
+            class="absolute rounded-full w-[60px] h-[60px] p-2 bg-greyish left-[10px] grid place-items-center"
+          >
+            <img
+              src="@/assets/images/stats.svg"
+              class="w-[30px] h-[30px]"
+              alt=""
+              srcset=""
+            />
+          </div>
+
+          <div class="flex flex-col h-full justify-center items-center gap-3">
+            <p class="font-bold text-[24px]">High ROIs</p>
+            <p class="font-semibold text-[18px] text-center px-2">
+              Great massive returns for shares
+            </p>
+          </div>
+        </div>
+        <div
+          class="rounded-full w-[270px] h-[270px] bg-dark-greenish relative mt-[75px]"
+        >
+          <div
+            class="absolute rounded-full w-[60px] h-[60px] p-2 bg-greyish left-[10px] grid place-items-center"
+          >
+            <img
+              src="@/assets/images/shield.svg"
+              class="w-[30px] h-[30px]"
+              alt=""
+              srcset=""
+            />
+          </div>
+
+          <div class="flex flex-col h-full justify-center items-center gap-3">
+            <p class="font-bold text-[24px]">Security</p>
+            <p class="font-semibold text-center text-[18px] max-w-[200px]">
+              Guaranteed fund protection on each asset
+            </p>
+          </div>
+        </div>
+        <div
+          class="rounded-full w-[270px] h-[270px] bg-dark-bluish relative mt-[20px]"
+        >
+          <div
+            class="absolute rounded-full w-[60px] h-[60px] p-2 bg-greyish left-[10px] grid place-items-center"
+          >
+            <img
+              src="@/assets/images/connect.svg"
+              class="w-[30px] h-[30px]"
+              alt=""
+              srcset=""
+            />
+          </div>
+
+          <div class="flex flex-col h-full justify-center items-center gap-3">
+            <p class="font-bold text-[24px]">Connection</p>
+            <p class="font-semibold text-[18px] max-w-[200px] text-center">
+              Connect with assets all over the world with lower risks
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section data-aos="fade-up" class="w-full mt-16">
+        <div class="flex gap-2 w-full mt-6 items-center">
+          <div
+            class="quote-stick w-[7px] h-[30px] bg-gradient-to-b from-gradient-start to-gradient-stop rounded-full"
           ></div>
-          <h3 class="text-white font-semibold text-[16px]">
-            Get High ROI Investments by sharing and funding
-          </h3>
+          <h2 class="font-semibold text-[24px]">Q&A</h2>
         </div>
-      </div>
-
-      <img
-        src="@/assets/images/landing_images.png"
-        alt="Unknown"
-        class="w-full lg:max-w-[700px] md:max-w-[400px]"
-      />
-    </section>
-
-    <section
-      name="Perks"
-      data-aos="fade-up"
-      
-      class="w-full h-[360px] hidden lg:flex bg-main/20 rounded-[32px] mt-16 px-[5%] justify-between relative overflow-visible"
-    >
-      <div class="top-[30%] squiggly left-[-50px] z-[-1] absolute">
-        <img src="@/assets/images/squiggly.svg" class="w-full" />
-      </div>
-
-      <div
-        class="rounded-full w-[270px] h-[270px] bg-bluish relative mt-[20px]"
-      >
-        <div
-          class="absolute rounded-full w-[60px] h-[60px] p-2 bg-greyish left-[10px] grid place-items-center"
-        >
-          <img
-            src="@/assets/images/stats.svg"
-            class="w-[30px] h-[30px]"
-            alt=""
-            srcset=""
-          />
-        </div>
-
-        <div class="flex flex-col justify-center items-center gap-4 pt-16">
-          <p class="font-bold text-[28px]">High ROIs</p>
-          <p class="font-semibold text-[20px] text-center px-2">
-            Great massive returns for shares
-          </p>
-        </div>
-      </div>
-      <div
-        class="rounded-full w-[270px] h-[270px] bg-greenish relative mt-[75px]"
-      >
-        <div
-          class="absolute rounded-full w-[60px] h-[60px] p-2 bg-greyish left-[10px] grid place-items-center"
-        >
-          <img
-            src="@/assets/images/shield.svg"
-            class="w-[30px] h-[30px]"
-            alt=""
-            srcset=""
-          />
-        </div>
-
-        <div class="flex flex-col justify-center items-center gap-4 pt-16">
-          <p class="font-bold  text-[28px]">Security</p>
-          <p class="font-semibold text-center text-[20px] max-w-[200px]">
-            Guaranteed protection on each asset
-          </p>
-        </div>
-      </div>
-      <div
-        class="rounded-full w-[270px] h-[270px] bg-bluish relative mt-[20px]"
-      >
-        <div
-          class="absolute rounded-full w-[60px] h-[60px] p-2 bg-greyish left-[10px] grid place-items-center"
-        >
-          <img
-            src="@/assets/images/connect.svg"
-            class="w-[30px] h-[30px]"
-            alt=""
-            srcset=""
-          />
-        </div>
-
-        <div class="flex flex-col justify-center items-center gap-4 pt-16">
-          <p class="font-bold text-[28px]">Connection</p>
-          <p class="font-semibold text-[20px] max-w-[200px] text-center">
-            Connect with resources over the world with lower risks
-          </p>
-        </div>
-      </div>
-      
-    </section>
-
-    <section data-aos="fade-up" class="w-full mt-16" >
-      <div class="flex gap-2 w-full mt-6 items-center">
-        <div
-          class="quote-stick w-[7px] h-[30px] bg-gradient-to-b from-gradient-start to-gradient-stop rounded-full"
-        ></div>
-        <h2 class="font-semibold text-[32px]">Q&A</h2>
-      </div>
-      <Faq />
-      <Faq question="How are incentives distributed?" answer="Incentives are distributed based on the shares gotten during the funding stage..."/>
-    </section>
-    <section data-aos="fade-up" name="Stats" class="w-full mt-16">
-      <div class="flex gap-2 w-full mt-6 items-center">
-        <div
-          class="quote-stick w-[7px] h-[30px] bg-gradient-to-b from-gradient-start to-gradient-stop rounded-full"
-        ></div>
-        <h2 class="font-semibold text-[32px]">Stats</h2>
-      </div>
-
-      <div class="flex flex-col md:flex-row gap-y-12 w-full items-center md:justify-between md:gap-4 pt-20">
-        <div class="w-full rounded-[32px] h-[225px] bg-dark-bluish relative">
+        <Faq />
+        <Faq
+          question="How are incentives distributed?"
+          answer="Incentives are distributed based on the shares gotten during the funding stage..."
+        />
+      </section>
+      <section data-aos="fade-up" name="Stats" class="w-full mt-16">
+        <div class="flex gap-2 w-full mt-6 items-center">
           <div
-            class="absolute rounded-full w-[80px] h-[80px] bg-greyish top-[-40px] left-[50%] translate-x-[-50%] grid place-items-center"
-          >
-            <img src="@/assets/images/dollar.svg" alt="" srcset="" />
-          </div>
-          <div class="flex flex-col justify-center items-center gap-6 pt-12">
-            <p class="font-bold text-[20px]">Funds Raised</p>
-            <p class="font-bold text-[48px]">
-              101M+ <span class="text-bold text-[18px]">OUSD</span>
-            </p>
-          </div>
+            class="quote-stick w-[7px] h-[30px] bg-gradient-to-b from-gradient-start to-gradient-stop rounded-full"
+          ></div>
+          <h2 class="font-semibold text-[24px]">Stats</h2>
         </div>
-        <div class="w-full rounded-[32px] h-[225px] bg-dark-greenish relative">
+
+        <div
+          class="flex flex-col md:flex-row gap-y-12 w-full items-center md:justify-between md:gap-4 pt-20"
+        >
           <div
-            class="absolute rounded-full w-[80px] h-[80px] bg-greyish top-[-40px] left-[50%] translate-x-[-50%] grid place-items-center"
+            class="w-full rounded-[32px] h-[180px] md:h-[225px] bg-dark-bluish relative"
           >
-            <img src="@/assets/images/assets.svg" alt="" srcset="" />
+            <div
+              class="absolute rounded-full w-[80px] h-[80px] bg-greyish top-[-40px] left-[50%] translate-x-[-50%] grid place-items-center"
+            >
+              <img src="@/assets/images/dollar.svg" alt="" srcset="" />
+            </div>
+            <div class="flex flex-col justify-center items-center gap-6 pt-12">
+              <p class="font-bold text-[16px] md:text-[20px]">Funds Raised</p>
+              <p class="font-bold text-[28px] md:text-[32px] lg:text-[48px]">
+                101M+ <span class="text-bold text-[18px]">OUSD</span>
+              </p>
+            </div>
           </div>
-          <div class="flex flex-col justify-center items-center gap-6 pt-12">
-            <p class="font-bold text-[20px]">Procured Assets</p>
-            <p class="font-bold text-[48px]">
-              25,346 <span class="text-bold text-[18px]">Assets</span>
-            </p>
+          <div
+            class="w-full rounded-[32px] h-[180px] md:h-[225px] bg-dark-greenish relative"
+          >
+            <div
+              class="absolute rounded-full w-[60px] h-[60px] md:w-[80px] md:h-[80px] bg-greyish top-[-30px] md:top-[-40px] left-[50%] translate-x-[-50%] grid place-items-center"
+            >
+              <img src="@/assets/images/assets.svg" alt="" srcset="" />
+            </div>
+            <div class="flex flex-col justify-center items-center gap-6 pt-12">
+              <p class="font-bold text-[16px] md:text-[20px]">
+                Procured Assets
+              </p>
+              <p class="font-bold text-[28px] md:text-[32px] lg:text-[48px]">
+                25,346 <span class="text-bold text-[18px]">Assets</span>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <OVFooter />
   </div>

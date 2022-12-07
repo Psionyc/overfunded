@@ -3,49 +3,65 @@
     <Navbar />
 
     <div
-      class="flex flex-col w-full md:flex-row px-4 gap-4 md:justify-between items-center justify-center my-8"
+      class="flex  w-full  px-6 gap-4 justify-between items-center  my-4"
     >
-      <h2 v-if="!walletStore.isConnected" class="font-bold text-[24px]">
+      <h2 v-if="!walletStore.isConnected" class="font-bold text-[18px]">
         Connect a wallet...
       </h2>
-      <h2 v-else class="font-bold text-[24px] text-ellipsis whitespace-nowrap">
+      <h2 v-else class="font-bold text-[20px] text-ellipsis whitespace-nowrap">
         Hello
         <span @click="openUserDataModal" class="underline open-userdata-button hover:text-greenish cursor-pointer"
           >{{ walletStore.walletAddressOrUsername }}...</span
         >
       </h2>
-      <button
-        v-if="!walletStore.isConnected"
-        @click="walletStore.connect"
-        class="font-medium text-[18px] bg-main/60 px-4 py-2 rounded-[12px] w-full md:w-[200px]"
-      >
-        Connect
-      </button>
-      <button
-        v-else
-        @click="walletStore.disconnect"
-        class="font-medium text-[18px] bg-main/60 px-4 py-2 rounded-[12px] w-full md:w-[242px]"
-      >
-        Disconnect
-      </button>
+      <div v-if="!walletStore.isConnected">
+        <button  
+          @click="walletStore.connect"
+          class="text-[18px] bg-main/60 px-6 py-2 gap-1 rounded-[12px] hidden md:flex justify-center items-center"
+        >
+        <img src="@/assets/images/plug.svg" alt="" srcset="" class="h-4 w-4">
+          <p>Connect</p>
+        </button>
+        <button
+          @click="walletStore.connect"
+          class=" text-[18px] bg-main/60 px-4 py-2 rounded-[12px] md:hidden"
+        >
+        <img src="@/assets/images/plug.svg" alt="" srcset="" class="h-6 w-6"/>
+        </button>
+      </div>
+      <div v-else>
+        <button  
+          @click="walletStore.disconnect"
+          class="text-[18px] bg-main/60 px-6 py-2 gap-1 rounded-[12px] hidden md:flex justify-center items-center"
+        >
+        <img src="@/assets/images/unplug.svg" alt="" srcset="" class="h-5 w-5">
+          <p>Disconnect</p>
+        </button>
+        <button  
+          @click="walletStore.disconnect"
+          class="text-[18px] bg-main/60 px-4 py-2 rounded-[12px]  md:hidden"
+        >
+          <img src="@/assets/images/unplug.svg" alt="" srcset="" class="h-6 w-6">
+        </button>
+      </div>
     </div>
 
     <div
-      class="flex flex-col gap-4 justify-center md:flex-row md:justify-between items-center px-4"
+      class="flex flex-col gap-2 md:gap-4 justify-center md:flex-row md:justify-between items-center px-4"
     >
       <div
-        class="bg-black/50 rounded-[16px] p-4 md:w-[446px] pl-8 flex items-center"
+        class="bg-black/50 rounded-[16px] w-full p-4 md:w-[446px] pl-8 mb-2 flex items-center"
       >
         <input
           v-model="searchInput"
           @keyup="search"
           type="text"
-          class="font-semibold text-[20px] bg-transparent w-full outline-none"
+          class="font-semibold text-[16px] bg-transparent w-full outline-none"
           placeholder="Search..."
         />
       </div>
 
-      <div class="flex gap-20 items-center font-medium text-[18px]">
+      <div class="flex gap-20 items-center font-semibold text-[14px] md:text-[18px]">
         <button
           class="flex gap-4 text-white"
           @click="openAddPropertyModal"

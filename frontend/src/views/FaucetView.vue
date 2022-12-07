@@ -105,7 +105,7 @@ const getOUSD = async  ()=>{
 
 <style lang="scss" scoped>
 .faucet_container {
-  height: calc(100vh - 234px);
+  height: calc(100vh - 180px);
 }
 
 .button {

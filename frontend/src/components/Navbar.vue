@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full h-[92px] mt-6 bg-main/20 px-6 md:px-12 flex items-center justify-between rounded-[24px]"
+    class="w-full h-[72px]  bg-main/20 px-6 md:px-12 flex items-center justify-between mb-4 md:rounded-[24px] md:mt-4"
   >
     <router-link to="/"
       ><h2 class="font-bold text-[20px] md-text-[24px]">
