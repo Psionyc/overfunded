@@ -1,9 +1,9 @@
 <template>
   <div
-    class="w-full h-[92px] mt-6 bg-main/20 px-12 flex items-center justify-between rounded-[24px]"
+    class="w-full h-[92px] mt-6 bg-main/20 px-6 md:px-12 flex items-center justify-between rounded-[24px]"
   >
     <router-link to="/"
-      ><h2 class="font-bold text-[24px]">
+      ><h2 class="font-bold text-[20px] md-text-[24px]">
         Over<span class="text-bluish">funded</span>
       </h2>
     </router-link>
@@ -11,7 +11,7 @@
       <RouterLink to="/fund"><h4>Properties</h4></RouterLink>
       <RouterLink to="/faucet"><h4>Faucet</h4></RouterLink>
     </div>
-    <img @click="EventManager.emit('openMobileMenu')" class="h-[24px] md:hidden block" src="@/assets/images/menu.svg" alt="" srcset="">
+    <img @click="EventManager.emit('openMobileMenu')" class="h-[20px] w-[40px] object-scale-down md:hidden block" src="@/assets/images/menu.svg" alt="" srcset="">
   </div>
   <MobileMenu/>
   

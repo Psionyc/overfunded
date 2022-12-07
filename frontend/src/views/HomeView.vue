@@ -2,11 +2,11 @@
   <div class="home_view w-full h-full bg-[#181818] px-2 lg:px-12">
     <Navbar />
 
-    <section class="landing w-full flex flex-col-reverse items-center md:gap-2 md:justify-between md:flex-row">
+    <section  class="landing w-full flex flex-col-reverse items-center md:gap-2 md:justify-between md:flex-row">
       <!-- Landing text and image -->
 
       <div class="flex flex-col gap-6 md:mt-[100px]">
-        <h1 class="font-semibold text-[32px] lg:text-[40px] text-center md:text-start">
+        <h1 class="font-semibold text-[28px] lg:text-[40px] text-center md:text-start">
           Next-Gen incentivized crowdfunding on the Polygon Ecosystem
         </h1>
 
@@ -41,6 +41,7 @@
 
     <section
       name="Perks"
+      data-aos="fade-up"
       
       class="w-full h-[360px] hidden lg:flex bg-main/20 rounded-[32px] mt-16 px-[5%] justify-between relative overflow-visible"
     >
@@ -114,7 +115,7 @@
       
     </section>
 
-    <section class="w-full mt-16" >
+    <section data-aos="fade-up" class="w-full mt-16" >
       <div class="flex gap-2 w-full mt-6 items-center">
         <div
           class="quote-stick w-[7px] h-[30px] bg-gradient-to-b from-gradient-start to-gradient-stop rounded-full"
@@ -124,7 +125,7 @@
       <Faq />
       <Faq question="How are incentives distributed?" answer="Incentives are distributed based on the amount the funders funded..."/>
     </section>
-    <section name="Stats" class="w-full mt-16">
+    <section data-aos="fade-up" name="Stats" class="w-full mt-16">
       <div class="flex gap-2 w-full mt-6 items-center">
         <div
           class="quote-stick w-[7px] h-[30px] bg-gradient-to-b from-gradient-start to-gradient-stop rounded-full"

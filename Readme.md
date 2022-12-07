@@ -5,27 +5,31 @@
 - Vue (Frontend)
 - Ethers js (Contact Interaction)
 - Hardhat (Contract Devlopment)
+- Node (Optional Backend)
 
 ## Use of Product
 
-The average person wants to own propetries that yield profits but they probably don't have a million to throw around but they can start with a thousand... This product (MVP) allows users to own shares of real life products with blockchain proof and get profits when the property yields profit...
+The average person wants to own propetries that yield profits but they probably don't have a million to throw into it but they can start with a thousand... This product (MVP) allows users to own shares of real life products with blockchain proof and get profits when the property yields profit...
 
 > > **Note**: Read How to use below
 
 ## Brief Description
 
-Overfunded is a next-gen incentivized crowdfunding system that allows owning real-life properties with blockchain proof while ensuring their funds are secured;
+Overfunded is a next-gen incentivized crowdfunding system that allows owning real-life properties with blockchain proof while ensuring their funds are secured.  
+
 
 ## How To Use
 
+**Step 0**:
+Go to [Mumbai Faucet](https://overfunded.vercel.app/faucet) and get some Test Matic.  
 **Step 1**:
-Go to [Faucet Page](https://overfunded.vercel.app/faucet).  
+Go to [Overfunded Faucet](https://overfunded.vercel.app/faucet), connect a wallet and _GET OUSD_. 
+
 **Step 2**:
-Connect a wallet and _GET OUSD_.  
-**Step 3**:
-Go to [Funding Page](https://overfunded.vercel.app/fund) and you can start testing out feautures.  
-**Step 4**
-Check out [What to Test](https://github.com/Psionyc/overfunded/#what-to-test)
+Go to [Funding Page](https://overfunded.vercel.app/fund) and you can start testing out feautures. 
+
+**Step 3**
+Check out [What to Test](https://github.com/Psionyc/overfunded/#what-to-test) to get a better understanding of everything that currently works with this release...
 
 ## What to test
 
@@ -40,10 +44,34 @@ Check out [What to Test](https://github.com/Psionyc/overfunded/#what-to-test)
 **Change LogoUrl:** Again if you have an image url for an avater you can also use it for your logo/avatar url.
 
 **Mint NFT**: To prove you funded a property you have access to a mint function to get an official test nft.  
-You can check all your nfts on [Opensea (Overfunded NFT v4)](https://testnets.opensea.io/collection/overfundednft-v4)
+You can check all your nfts on [Opensea (Overfunded NFTs)](https://testnets.opensea.io/collection/overfundednft-sanpb3l89h)
+
+## Rules That Govern the Overfunded Ecosystem
+
+- Anyone can add a property
+- Anyone can fund a property
+- Total funds collected from user can never exceed the price of the property
+- Properties can be funded till they are flagged or removed in which the funds are reimbursed. 
+- Only the Overfunded administratives (In case of emergencies) and property owner can withdraw funds.
+- Funds can only be withdrawn when a property is verified.
+>> Note that all properties are verified by default for testing purposes.
+- Anyone who funded a property can mint it's nft only once.
+- Anyone can add profit to a property.
+- The profits are shared between funders to a precison of 18 decimals (Instead of using decimals a BPS is used which is 10^18).
+- Users can edit their profile whenever they wish but should pay attention to gas costs.
+- Anyone can pick ousd(Overfunded's native currency) from the faucet for testing purposes. 
+
+## Next Steps
+
+- Adding UI components for adding and withdrawing profits
+- Creating a voting system before withdrawing funds
+- Storing user and property data off chain to reduce gas costs
+- Event listeners to notify users about on-chain changes (Such as Adding Profits if possible)
+- Editting metadata through a backend to show user's current share as NFTs
 
 ## My Environment
-Below is a list showcasing the public environment variables used, otherwise sensitive data have been removed from the list
+Below is a list showcasing the public environment variables used, otherwise sensitive data have been removed from the list.  
+
 ```
 VITE_PROPERTY_MANAGER = "0x2dAE9299C33C63d5081823e942A2981Dc8a5494a"
 VITE_OUSD = "0x0dd279A9A03e57546B70fbe7903FdCA18c0E14d6"
@@ -58,7 +86,6 @@ VITE_BACKEND_URL = "https://overfunded-backend-production.up.railway.app"
 ```
 
 ## Major Contracts and Functionalities
-
 - ERC720i.sol
 - FundStroage.sol
 - Managable.sol
@@ -85,7 +112,7 @@ Manageable is an abstract contract that controls functionality of having admins 
 
 ONFT which is short for _OverfundedNFT_ is just a NFT to hold once a property is purchased...
 
-> > **Note**: The functionality of this contract is limited since there is no actual backend
+> > **Note**: The functionality of this contract is limited since there is no reasonable backend
 
 #### **OUSD.sol**:
 
@@ -140,8 +167,11 @@ Challenges I faced during the contract development process are:
 
 Challenges I faced during the frontend development process are:
 
+- Vue Proxy/Reactive
 - Hexadecimal ChainID
 - Hexadecimal Comparism
+
+**Vue Proxy/Reactive**: Vue core reactive elements like ref and reactive and stores do not support ethers contracts. The simples solution is to initialize contracts as mutable global variables and alter them using events
 
 **Hexadecimal ChainID**: ChainIDs are naturally encoded as a decimal number on websites like https://chainlist.org but metamask requires hexadecimal chainIDs or it will throw an error
 

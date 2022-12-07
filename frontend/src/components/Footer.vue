@@ -1,5 +1,5 @@
 <template>
- <div class="rounded-tr-[32px] px-[62px] mt-12 rounded-tl-[32px] items-center w-full h-[92px] bg-main/20 flex justify-between">
+ <div class="rounded-tr-[32px] px-[32px] md-px-[62px] mt-12 rounded-tl-[32px] items-center w-full h-[92px] bg-main/20 flex justify-between">
     <h5 class="font-semibold text-[24]">Overfunded © 2022</h5>
     <a href="https://github.com/Psionyc/overfunded" target="_blank">
         <div class="flex gap-2 items-center">

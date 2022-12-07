@@ -10,6 +10,7 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "aos": "^2.3.4",
     "axios": "^1.2.1",
     "debounce": "^1.2.1",
     "ethers": "^5.7.2",
@@ -23,6 +24,7 @@
     "vue-timer-hook": "^1.0.36"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.4",
     "@types/debounce": "^1.2.1",
     "@types/lodash": "^4.14.191",
     "@types/node": "^16.11.68",

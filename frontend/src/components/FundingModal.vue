@@ -6,7 +6,7 @@
     <div class="py-6 w-full items-center gap-4 flex flex-col px-4">
       <p class="font-semibold text-[24px] mb-4">Fund Property</p>
       <label for="amount" class="self-start font-semibold text-[18px] ml-2"
-        >Amount- (${{formatter.format(inputValues.amount)}})</label
+        >Amount- (${{formatter.format(Math.round(inputValues.amount))}})</label
       >
       <div class="w-full">
         <div

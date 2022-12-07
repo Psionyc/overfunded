@@ -21,7 +21,7 @@
         />
       </div>
       <label for="amount" class="self-start font-semibold text-[18px] ml-4"
-        >Price- (${{ formatter.format(inputValues.price) }})</label
+        >Price- (${{ formatter.format(Math.round(inputValues.price)) }})</label
       >
       <div class="w-full">
         <div

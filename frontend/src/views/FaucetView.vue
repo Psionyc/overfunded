@@ -6,8 +6,8 @@
       <div
         class="faucet flex flex-col items-center gap-4 bg-dark-bluish w-[90%] max-w-[500px] h-[300px] rounded-[24px] pt-5"
       >
-        <h1 class="font-semibold text-[32px] mb-4">OUSD Faucet</h1>
-        <p v-show="walletStore.isConnected" class="font-semibold text-[20px]">
+        <h1 class="font-semibold text-[28px] mb-4">OUSD Faucet</h1>
+        <p v-show="walletStore.isConnected" class="font-semibold text-[18px]">
           <span class="text-[16px] text-greenish">Balance >></span> {{ formatter.format(balance) }} OUSD
         </p>
         <button

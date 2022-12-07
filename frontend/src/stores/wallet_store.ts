@@ -146,6 +146,7 @@ export const usewalletStore = defineStore("wallet", () => {
       await tx?.wait()
 
       EventManager.emit('toast', {message: "NFT minted successfully", type: ToastType.SUCCESS})
+      EventManager.emit('dataUpdated')
       
     } catch (e) {
       _handleError(e);

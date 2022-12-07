@@ -5,10 +5,10 @@
     <div
       class="flex flex-col w-full md:flex-row px-4 gap-4 md:justify-between items-center justify-center my-8"
     >
-      <h2 v-if="!walletStore.isConnected" class="font-bold text-[28px]">
+      <h2 v-if="!walletStore.isConnected" class="font-bold text-[24px]">
         Connect a wallet...
       </h2>
-      <h2 v-else class="font-bold text-[28px] text-ellipsis whitespace-nowrap">
+      <h2 v-else class="font-bold text-[24px] text-ellipsis whitespace-nowrap">
         Hello
         <span @click="openUserDataModal" class="underline open-userdata-button hover:text-greenish cursor-pointer"
           >{{ walletStore.walletAddressOrUsername }}...</span
@@ -17,14 +17,14 @@
       <button
         v-if="!walletStore.isConnected"
         @click="walletStore.connect"
-        class="font-medium text-[20px] bg-main/60 px-4 py-2 rounded-[12px] w-full md:w-[242px]"
+        class="font-medium text-[18px] bg-main/60 px-4 py-2 rounded-[12px] w-full md:w-[200px]"
       >
         Connect
       </button>
       <button
         v-else
         @click="walletStore.disconnect"
-        class="font-medium text-[20px] bg-main/60 px-4 py-2 rounded-[12px] w-full md:w-[242px]"
+        class="font-medium text-[18px] bg-main/60 px-4 py-2 rounded-[12px] w-full md:w-[242px]"
       >
         Disconnect
       </button>
@@ -34,18 +34,18 @@
       class="flex flex-col gap-4 justify-center md:flex-row md:justify-between items-center px-4"
     >
       <div
-        class="bg-black/50 rounded-[16px] h-[60px] md:w-[446px] pl-8 flex items-center"
+        class="bg-black/50 rounded-[16px] p-4 md:w-[446px] pl-8 flex items-center"
       >
         <input
           v-model="searchInput"
           @keyup="search"
           type="text"
-          class="font-semibold text-[24px] bg-transparent w-full outline-none"
+          class="font-semibold text-[20px] bg-transparent w-full outline-none"
           placeholder="Search..."
         />
       </div>
 
-      <div class="flex gap-20 items-center font-medium text-[20px]">
+      <div class="flex gap-20 items-center font-medium text-[18px]">
         <button
           class="flex gap-4 text-white"
           @click="openAddPropertyModal"
@@ -59,16 +59,16 @@
           class="bg-transparent outline-none border-none"
           v-model="sortByValue"
         >
-          <option class="bg-transparent text-black text-[20px] font-medium">
+          <option class="bg-transparent text-black text-[18px] font-medium">
             {{ SortBy.NONE }}
           </option>
-          <option class="bg-transparent text-black text-[20px] font-medium">
+          <option class="bg-transparent text-black text-[18px] font-medium">
             {{ SortBy.PRICE_ASC }}
           </option>
-          <option class="bg-transparent text-black text-[20px] font-medium">
+          <option class="bg-transparent text-black text-[18px] font-medium">
             {{ SortBy.PRICE_DESC }}
           </option>
-          <option class="bg-transparent text-black text-[20px] font-medium">
+          <option class="bg-transparent text-black text-[18px] font-medium">
             {{ SortBy.EROI }}
           </option>
         </select>

@@ -120,12 +120,13 @@ export const usePropertyStore = defineStore("property", () => {
 
   async function fundProperty(property: number, amount: number) {
     try {
-      await (await ousd?.approve(propertyManager?.address!, amount))!.wait(1);
+      const rounded = Math.round(amount)
+      await (await ousd?.approve(propertyManager?.address!, rounded))!.wait(1);
       EventManager.emit("toast", {
         message: "Confirmed tx 1",
         type: ToastType.INFO,
       });
-      await (await propertyManager?.fundProperty(property, amount))!.wait();
+      await (await propertyManager?.fundProperty(property, rounded))!.wait();
       EventManager.emit("toast", {
         message: "Transaction Successful",
         type: ToastType.SUCCESS,
@@ -156,7 +157,7 @@ export const usePropertyStore = defineStore("property", () => {
       }), "A valid image url must be provided");
       const prop = await propertyManager?.createNewProperty(
         name,
-        price,
+        Math.round(price),
         [image],
         location
       );
