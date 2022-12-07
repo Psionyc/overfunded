@@ -1,18 +1,18 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-import type { Property } from "@/models/Property";
+import validator from "validator";
 import type {
   PropertyManager,
   PropertyStructOutput,
-  PropertyStruct,
 } from "@/typechain-types/contracts/PropertyManager";
 import type { OverfundedUSD } from "@/typechain-types/contracts/OUSD.sol/OverfundedUSD";
 import PropertyManagerJson from "@/artifacts/contracts/PropertyManager.sol/PropertyManager.json";
 import OverfundedJson from "@/artifacts/contracts/OUSD.sol/OverfundedUSD.json";
-import { BaseContract, BigNumber, ethers, providers } from "ethers";
+import { BaseContract, ethers } from "ethers";
 import { EventManager } from "@/main";
 import { ToastType } from "@/events";
 import { OUSD_CONTRACT, PROPERTY_MANAGER_CONTRACT } from "@/config";
+import { ensure, handleFunctionErrors } from "@/shared/functions";
 
 let provider: ethers.providers.Web3Provider | null = null;
 let propertyManager: (PropertyManager & BaseContract) | null = null;
@@ -107,30 +107,16 @@ export const usePropertyStore = defineStore("property", () => {
     });
   }
 
-  function _handleError(e: any) {
-    if (e.code == "ACTION_REJECTED")
-      EventManager.emit("toast", {
-        message: "Transaction Rejected",
-        type: ToastType.ERROR,
-      });
-    else
-      EventManager.emit("toast", {
-        message: "Transaction failed",
-        type: ToastType.ERROR,
-      });
-  }
 
   async function getNextPaginatedProperties() {
     try {
-      const v = await propertyManager?.getProperties(next.value,limit)
+      const v = await propertyManager?.getProperties(next.value, limit);
       properties.value = [...properties.value, ...v!.props];
       next.value = v!.nextOffset.toNumber();
     } catch (error) {
-      _handleError(error)
+      handleFunctionErrors(error);
     }
   }
-
-  
 
   async function fundProperty(property: number, amount: number) {
     try {
@@ -148,7 +134,7 @@ export const usePropertyStore = defineStore("property", () => {
       await refreshProperties();
       console.log(properties.value[property].funds.toNumber());
     } catch (e: any) {
-      _handleError(e);
+      handleFunctionErrors(e);
     }
   }
 
@@ -159,6 +145,15 @@ export const usePropertyStore = defineStore("property", () => {
     location: string
   ) {
     try {
+      ensure(!validator.isEmpty(name), "A name must be provided");
+      ensure(price > 0, "Price must be greater than 0");
+      ensure(
+        !validator.isEmpty(location),
+        "A location must be provided must be provided"
+      );
+      ensure(validator.isURL(image, {
+        
+      }), "A valid image url must be provided");
       const prop = await propertyManager?.createNewProperty(
         name,
         price,
@@ -166,10 +161,10 @@ export const usePropertyStore = defineStore("property", () => {
         location
       );
       await prop?.wait();
-
+      EventManager.emit("closeModal");
       await refreshProperties();
     } catch (e: any) {
-      _handleError(e);
+      handleFunctionErrors(e);
     }
   }
 
@@ -181,13 +176,13 @@ export const usePropertyStore = defineStore("property", () => {
     try {
       const tx = await propertyManager?.withdrawPropertyFund(_property);
       await tx?.wait();
-      
+
       EventManager.emit("toast", {
         message: "Succesfully Withdrawn Funds",
         type: ToastType.SUCCESS,
       });
     } catch (error) {
-      _handleError(error);
+      handleFunctionErrors(error);
     }
   }
 
@@ -201,7 +196,7 @@ export const usePropertyStore = defineStore("property", () => {
         type: ToastType.SUCCESS,
       });
     } catch (e) {
-      _handleError(e);
+      handleFunctionErrors(e);
     }
   }
   return {
@@ -217,6 +212,6 @@ export const usePropertyStore = defineStore("property", () => {
     getOUSDBalance,
     getOUSD,
     search,
-    withdrawFunds
+    withdrawFunds,
   };
 });

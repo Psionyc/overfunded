@@ -44,7 +44,7 @@ contract PropertyStorage is Ownable {
     }
 
     function createNewProperty(
-        string calldata _name,
+        string calldata _name,     
         uint256 _price,
         string[] calldata _images,
         string calldata _location,

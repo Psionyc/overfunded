@@ -25,8 +25,6 @@ contract PropertyManager is Manageable {
         propertyStorage = new PropertyStorage();
     }
 
-  
-
     function getProperties(
         uint _offset,
         uint _limit
@@ -37,8 +35,10 @@ contract PropertyManager is Manageable {
     {
         return propertyStorage.getProperties(_offset, _limit);
     }
-    
-    function getProperty(uint256 _property) external view returns (Property memory){
+
+    function getProperty(
+        uint256 _property
+    ) external view returns (Property memory) {
         return propertyStorage.getProperty(_property);
     }
 
@@ -47,7 +47,7 @@ contract PropertyManager is Manageable {
         uint256 _price,
         string[] calldata _images,
         string calldata _location
-    ) public  returns (Property memory) {
+    ) public returns (Property memory) {
         FundStorage fundStorage = new FundStorage(_price, token);
         Property memory property = propertyStorage.createNewProperty(
             _name,
@@ -86,7 +86,6 @@ contract PropertyManager is Manageable {
         uint256 remainingAmountToFund = property.price - property.funds;
 
         if (remainingAmountToFund <= _amount) {
-            
             bool transferred = token.transferFrom(
                 msg.sender,
                 address(property.fundStorage),
@@ -102,7 +101,13 @@ contract PropertyManager is Manageable {
             if (address(userManager) != address(0))
                 userManager.addNewUserFunding(
                     msg.sender,
-                    UserFundedProperty(property.id, property.name, property.price, property.images[0]),
+                    UserFundedProperty(
+                        property.id,
+                        property.name,
+                        property.price,
+                        property.images[0],
+                        false
+                    ),
                     remainingAmountToFund
                 );
         } else {
@@ -116,7 +121,17 @@ contract PropertyManager is Manageable {
             property.funds = property.funds + _amount;
             property.fundStorage.createFunding(msg.sender, _amount);
             if (address(userManager) != address(0))
-                userManager.addNewUserFunding(msg.sender, UserFundedProperty(property.id, property.name, property.price, property.images[0]), _amount);
+                userManager.addNewUserFunding(
+                    msg.sender,
+                    UserFundedProperty(
+                        property.id,
+                        property.name, 
+                        property.price,
+                        property.images[0],
+                        false
+                    ),
+                    _amount
+                );
         }
         propertyStorage.setProperty(_property, property);
         emit PropertyFunded(_property);

@@ -28,14 +28,22 @@ export type UserFundedPropertyStruct = {
   name: PromiseOrValue<string>;
   price: PromiseOrValue<BigNumberish>;
   baseImage: PromiseOrValue<string>;
+  minted: PromiseOrValue<boolean>;
 };
 
 export type UserFundedPropertyStructOutput = [
   BigNumber,
   string,
   BigNumber,
-  string
-] & { id: BigNumber; name: string; price: BigNumber; baseImage: string };
+  string,
+  boolean
+] & {
+  id: BigNumber;
+  name: string;
+  price: BigNumber;
+  baseImage: string;
+  minted: boolean;
+};
 
 export type UserFundingStruct = {
   timestamp: PromiseOrValue<BigNumberish>;
@@ -80,10 +88,10 @@ export type UserStructOutput = [
 
 export interface UserManagerInterface extends utils.Interface {
   functions: {
-    "addNewUserFunding(address,(uint256,string,uint256,string),uint256)": FunctionFragment;
+    "addNewUserFunding(address,(uint256,string,uint256,string,bool),uint256)": FunctionFragment;
     "getUser(address)": FunctionFragment;
     "getUserFundingPaginated(address,uint256,uint256)": FunctionFragment;
-    "mintPropertyNFT(uint256)": FunctionFragment;
+    "mintPropertyNFT(uint256,string)": FunctionFragment;
     "setUserLogo(string)": FunctionFragment;
     "setUsername(string)": FunctionFragment;
     "users(address)": FunctionFragment;
@@ -122,7 +130,7 @@ export interface UserManagerInterface extends utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "mintPropertyNFT",
-    values: [PromiseOrValue<BigNumberish>]
+    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
     functionFragment: "setUserLogo",
@@ -211,6 +219,7 @@ export interface UserManager extends BaseContract {
 
     mintPropertyNFT(
       _funding: PromiseOrValue<BigNumberish>,
+      _uri: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
@@ -258,6 +267,7 @@ export interface UserManager extends BaseContract {
 
   mintPropertyNFT(
     _funding: PromiseOrValue<BigNumberish>,
+    _uri: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -305,6 +315,7 @@ export interface UserManager extends BaseContract {
 
     mintPropertyNFT(
       _funding: PromiseOrValue<BigNumberish>,
+      _uri: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -355,6 +366,7 @@ export interface UserManager extends BaseContract {
 
     mintPropertyNFT(
       _funding: PromiseOrValue<BigNumberish>,
+      _uri: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
@@ -396,6 +408,7 @@ export interface UserManager extends BaseContract {
 
     mintPropertyNFT(
       _funding: PromiseOrValue<BigNumberish>,
+      _uri: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 

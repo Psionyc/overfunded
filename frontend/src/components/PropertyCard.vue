@@ -13,7 +13,7 @@
     <div class="flex flex-col gap-4 w-full px-2 md:px-4">
       <div class="flex gap-2 items-center mt-4 justify-between">
         <div class="flex gap-4 items-center">
-          <p class="font-semibold text-[28px]">
+          <p class="font-semibold text-[24px]">
             {{ props.name ?? "La Catalei House" }}
           </p>
 
@@ -40,19 +40,19 @@
 
       <div class="flex gap-2 items-center">
         <img src="@/assets/images/coin-white.svg" alt="" srcset="" />
-        <p class="font-semibold text-[24px]">
+        <p class="font-semibold text-[20px]">
           {{ formatCommas.format(props.funds) ?? 0 }}/{{
             formatCommas.format(props.price)
           }}
-          <span class="text-[20px]"
+          <span class="text-[18px]"
             >({{ ((props.funds! / props.price!) * 100).toFixed(1) }}%
             Funded)</span
           >
         </p>
       </div>
-      <div class="flex gap-2 items-start">
+      <div class="flex gap-2 items-center">
         <img src="@/assets/images/location.svg" alt="" srcset="" class="mt-2" />
-        <p class="font-semibold text-[24px]">
+        <p class="font-semibold text-[20px]">
           {{
             props.location ??
             `23475 Glacier View Dr, Eagle River, Alaska 99577, USA`
@@ -63,14 +63,14 @@
     <div class="flex gap-1">
       <button
         @click="fund()"
-        class="bg-greenish h-[72px] w-full mt-6 text-[24px] font-semibold px-4 py-2"
+        class="bg-greenish h-[72px] w-full mt-6 text-[20px] font-semibold px-4 py-2"
       >
         Fund
       </button>
       <button
       :disabled="(!isOwner || notFullyFunded || withdrawLoading)"
         @click="withdraw"
-        class="bg-greenish h-[72px] w-full mt-6 text-[24px] font-semibold px-4 py-2 disabled:bg-greenish/60 flex justify-center items-center gap-2"
+        class="bg-greenish h-[72px] w-full mt-6 text-[20px] font-semibold px-4 py-2 disabled:bg-greenish/60 flex justify-center items-center gap-2"
       >
       <svg
           v-show="withdrawLoading"

@@ -6,49 +6,52 @@
     <div class="py-6 w-full items-center gap-4 flex flex-col px-4">
       <p class="font-semibold text-[24px] mb-4">Fund Property</p>
       <label for="amount" class="self-start font-semibold text-[18px] ml-2"
-        >Amount (OUSD)</label
+        >Amount- (${{formatter.format(inputValues.amount)}})</label
       >
-      <div class="h-14 bg-black/20 rounded-[16px] py-2 px-4 w-full flex gap-2">
-        <input
-          v-model="inputValues.amount"
-          name="amount"
-          type="number"
-          class="w-full text-center h-full bg-transparent border-none outline-none text-[24px]"
-        />
+      <div class="w-full">
+        <div
+          class="bg-black/20 rounded-tr-[16px] rounded-tl-[16px] py-2 px-4 w-full flex gap-2"
+        >
+          <input
+            v-model="inputValues.amount"
+            name="amount"
+            type="number"
+            class="w-full text-center h-full bg-transparent border-none outline-none text-[20px]"
+          />
+        </div>
+        <div
+          class="flex items-center bg-black/20 gap-1 rounded-br-[24px] rounded-bl-[24px] justify-between"
+        >
+          <button
+            @click="setAmount(property.price - property.funds)"
+            class="bg-greenish font-semibold w-full text-[18px] px-4 py-2 rounded-bl-[24px] text-center"
+          >
+            MAX
+          </button>
+          <button
+            @click="setAmount(10_000)"
+            class="bg-greenish font-semibold w-full text-[18px] px-4 py-2 text-center"
+          >
+            10K
+          </button>
+          <button
+            @click="setAmount(50_000)"
+            class="bg-greenish font-semibold w-full text-[18px] px-4 py-2"
+          >
+            50K
+          </button>
+          <button
+            @click="setAmount(100_000)"
+            class="bg-greenish font-semibold w-full text-[18px] px-4 py-2 rounded-br-[24px]"
+          >
+            100K
+          </button>
+        </div>
       </div>
-
-      <div class="flex items-center px-4 gap-4 justify-between">
-        <button
-          :disabled="loading"
-          @click="setAmount(property.price - property.funds)"
-          class="bg-greenish font-semibold text-[20px] px-4 py-2 rounded-xl text-center"
-        >
-          MAX
-        </button>
-        <button
-          :disabled="loading"
-          @click="setAmount(500_000)"
-          class="bg-greenish font-semibold text-[20px] px-4 py-2 rounded-xl text-center"
-        >
-          500K
-        </button>
-        <button
-          @click="setAmount(1_000_000)"
-          class="bg-greenish font-semibold text-[20px] px-4 py-2 rounded-xl"
-        >
-          1M
-        </button>
-        <button
-          @click="setAmount(10_000_000)"
-          class="bg-greenish font-semibold text-[20px] px-4 py-2 rounded-xl"
-        >
-          10M
-        </button>
-      </div>
-      <label class="self-start font-semibold text-[18px] ml-2" for="note"
+      <label class="self-start font-semibold text-[18px] mt-4 ml-2" for="note"
         >Note(Optional)</label
       >
-      <div class="h-12 bg-black/20 rounded-[16px] py-2 px-4 w-full text-[20px]">
+      <div class="bg-black/20 rounded-[16px] py-4 px-4 w-full text-[20px]">
         <input
           v-model="inputValues.note"
           :disabled="loading"
@@ -60,7 +63,7 @@
     </div>
     <button
       @click="fund"
-      class="bg-greenish h-[72px] mt-auto w-full text-[24px] font-semibold px-4 py-2 rounded-full flex gap-4 items-center justify-center"
+      class="bg-greenish h-[72px] disabled:bg-greenish/50 mt-auto w-full text-[24px] font-semibold px-4 py-2 rounded-full flex gap-4 items-center justify-center"
     >
       <svg
         v-if="loading"
@@ -101,6 +104,10 @@ const property = reactive({
 
 const show = ref(false);
 const loading = ref(false);
+const formatter = Intl.NumberFormat("en", {
+  notation: "compact",
+  maximumFractionDigits: 2,
+});
 
 const propertyStore = usePropertyStore();
 
@@ -152,9 +159,11 @@ const fund = async () => {
   }
   loading.value = true;
   console.log(inputValues.amount, inputValues.note);
-  const data = await propertyStore.fundProperty(property.id, inputValues.amount).finally(()=>{
-    loading.value  = false
-  })
+  const data = await propertyStore
+    .fundProperty(property.id, inputValues.amount)
+    .finally(() => {
+      loading.value = false;
+    });
 
   EventManager.emit("closeModal");
 };

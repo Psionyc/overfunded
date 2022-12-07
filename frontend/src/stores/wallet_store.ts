@@ -139,9 +139,10 @@ export const usewalletStore = defineStore("wallet", () => {
     }
   };
 
-  const mintPropertyNFT = async (funding: number) => {
+  const mintPropertyNFT = async (funding:number, uri: string) => {
     try {
-      const tx = await userManager?.mintPropertyNFT(funding);
+      
+      const tx = await userManager?.mintPropertyNFT(funding, uri);
       await tx?.wait()
 
       EventManager.emit('toast', {message: "NFT minted successfully", type: ToastType.SUCCESS})

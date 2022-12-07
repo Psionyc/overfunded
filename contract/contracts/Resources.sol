@@ -8,6 +8,7 @@ struct UserFundedProperty {
     string name;
     uint256 price;
     string baseImage;
+    bool minted;
 }
 
 struct UserFunding{

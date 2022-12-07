@@ -1,6 +1,6 @@
 node_modules/
 node_*/
 cache/
-backend/
 dist/
+uploads/
 .env*

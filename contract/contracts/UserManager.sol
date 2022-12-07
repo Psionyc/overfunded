@@ -22,10 +22,11 @@ contract UserManager {
         users[msg.sender].username = _username;
     }
 
-    function mintPropertyNFT(uint256 _funding) public {
-        string storage baseImage = users[msg.sender].fundings[_funding].property.baseImage;
-        onft.safeMint(msg.sender, nextTokenId, baseImage);
+    function mintPropertyNFT(uint256 _funding, string calldata _uri) public {
+        require(!users[msg.sender].fundings[_funding].property.minted, "You already minted an NFT for this property");
+        onft.safeMint(msg.sender, nextTokenId, _uri);
         nextTokenId += 1;
+        users[msg.sender].fundings[_funding].property.minted = true;
     }
 
     function addNewUserFunding(
