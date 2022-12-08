@@ -93,7 +93,7 @@
 
     <div
       v-if="!walletStore.isConnected"
-      class="grid grid-cols-1 gap-x-16 gap-y-6 py-6 px-4 md:px-8 h-[400px] place-items-center"
+      class="grid grid-cols-1 gap-x-16 gap-y-6 py-6 px-4 md:px-8 fills place-items-center"
     >
       <p class="font-semibold text-[18px] text-center">
         Connect a wallet to view properties...
@@ -101,7 +101,7 @@
     </div>
     <div
       v-else-if="walletStore!.isLoading"
-      class="grid grid-cols-1 gap-x-16 gap-y-6 py-6 px-4 md:px-8 h-[400px] place-items-center"
+      class="grid grid-cols-1 gap-x-16 gap-y-6 py-6 px-4 md:px-8 fills place-items-center"
     >
       <svg
         class="animate-spin h-8 w-8 text-white"
@@ -126,7 +126,7 @@
     </div>
     <div
       v-else-if="(propertyStore.sortedProperties.length <= 0)"
-      class="grid grid-cols-1 gap-x-16 gap-y-6 py-6 px-4 md:px-8 h-[400px] place-items-center"
+      class="grid grid-cols-1 gap-x-16 gap-y-6 py-6 px-4 md:px-8 fills place-items-center"
     >
       <p class="font-semibold text-[18px] text-center">
         No Properties were found. Please Check your internet
@@ -135,7 +135,7 @@
 
     <div
       v-else
-      class="grid grid-cols-1 min-h-[400px] md:grid-cols-2 gap-x-16 gap-y-6 py-6 px-4 md:px-8"
+      class="grid grid-cols-1 fills md:grid-cols-2 gap-x-16 gap-y-6 py-6 px-4 md:px-8"
     >
       <PropertyCard
         v-for="property in propertyStore.sortedProperties"
@@ -232,7 +232,11 @@ watch(sortByValue, () => {
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.fills{
+  min-height: calc(100vh - (72px + 3rem + 200px));
+}
+
 .open-userdata-button {
   -webkit-user-select: none;
   -khtml-user-select: none;
