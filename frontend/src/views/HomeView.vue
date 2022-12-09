@@ -137,7 +137,7 @@
             <div class="flex flex-col h-full justify-center items-center gap-3">
               <p class="font-bold text-[24px]">Connection</p>
               <p class="font-semibold text-[18px] max-w-[200px] text-center">
-                Connect with assets all over the world with lower risks
+                Connect with assets all over the world
               </p>
             </div>
           </div>
