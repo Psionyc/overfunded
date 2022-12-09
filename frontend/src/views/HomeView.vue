@@ -1,8 +1,23 @@
 <template>
   <div class="home_view w-full h-full lg:px-12">
-    <!-- <div class="fixed w-full h-full -z-10 blur-sm">
-      <p class="fixed top-[80px] left-[100px]">Card</p>
-    </div> -->
+    <div class="fixed w-full h-full -z-10 blur-[9px]">
+      
+      <img
+        src="@/assets/images/bg-ellipse.svg"
+        data-lag="0s"
+        class="animatable h-[100px] w-[100px] fixed bottom-[100px] right-[100px] md:bottom-[200ox] md:right-[10vw]"
+        alt=""
+        srcset=""
+      />
+      <img
+        src="@/assets/images/bg-polygon.svg "
+        class="animatable h-[100px] w-[100px] fixed top-[100px] left-[10px]"
+        alt=""
+        srcset=""
+        data-lag="0.5s"
+      />
+ 
+    </div>
     <Navbar />
     <div class="px-2">
       <section
@@ -202,4 +217,33 @@ import { RouterLink } from "vue-router";
 .squiggly {
   width: calc(100% + 100px);
 }
+@keyframes move {
+  0% {
+    transform: translateY(-100px) translateX(20px);
+  }
+  25% {
+    transform: translateY(-100px) translateX(40px);
+  }
+  50% {
+    transform: translateY(-50px) translateX(80px);
+  }
+  75% {
+    transform: translateY(-0px) translateX(100px);
+  }
+  100% {
+    transform: translateY(-100px) translateX(20px);
+  }
+}
+
+.animatable {
+  animation: move;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-play-state: running;
+  animation-duration: 7s;
+  animation-delay: attr(data-lag);
+  
+}
+
+
 </style>
