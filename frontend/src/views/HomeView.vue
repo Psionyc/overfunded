@@ -82,7 +82,7 @@
             <img src="@/assets/images/squiggly.svg" class="w-full" />
           </div>
           <div
-            class="rounded-full w-[270px] h-[270px] bg-dark-bluish relative md:mt-[20px]"
+            class="rounded-full w-[240px] h-[240px] md:w-[270px] md:h-[270px] bg-dark-bluish relative md:mt-[20px]"
           >
             <div
               class="absolute rounded-full w-[60px] h-[60px] p-2 bg-greyish left-[10px] grid place-items-center"
@@ -102,7 +102,7 @@
             </div>
           </div>
           <div
-            class="rounded-full w-[270px] h-[270px] bg-dark-greenish relative md:mt-[75px]"
+            class="rounded-full w-[240px] h-[240px] md:w-[270px] md:h-[270px] bg-dark-greenish relative md:mt-[75px]"
           >
             <div
               class="absolute rounded-full w-[60px] h-[60px] p-2 bg-greyish left-[10px] grid place-items-center"
@@ -122,7 +122,7 @@
             </div>
           </div>
           <div
-            class="rounded-full w-[270px] h-[270px] bg-dark-bluish relative md:mt-[20px]"
+            class="rounded-full w-[240px] h-[240px] md:w-[270px] md:h-[270px] bg-dark-bluish relative md:mt-[20px]"
           >
             <div
               class="absolute rounded-full w-[60px] h-[60px] p-2 bg-greyish left-[10px] grid place-items-center"
