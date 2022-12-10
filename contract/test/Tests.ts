@@ -70,7 +70,7 @@ describe("Testing Interconnected contracts", function () {
     });
     it("Can ascertain correct property manager", async () => {
       const propertyManager = await deploy();
-      console.log(propertyManager.address);
+      
       expect(propertyManager).not.to.be.undefined;
     });
   });
@@ -283,7 +283,7 @@ describe("Testing Interconnected contracts", function () {
       const withdrawableProfits = await fundStorage.getWithdrawableProfits(a.address);
       await propertyManager.withdrawProfits(0);
       const user = await userManager.getUser(a.address);
-      console.log(user.fundings);
+      
       // console.log(user.totalFunds);
       // console.log(user.assetsFunded);
 
@@ -299,6 +299,48 @@ describe("Testing Interconnected contracts", function () {
       expect((await userManager.getUser(a.address)).username).to.be.equal("Ionic")
     })
 
-    // it("")
+    it("User Manager can set correct username", async ()=>{
+      const {userManager} = await deploySeperate()
+
+      userManager.setUsername("Ionic")
+
+      expect((await userManager.getUser(a.address)).username).to.be.equal("Ionic")
+    })
+
+    it("User Manager can set correct username", async ()=>{
+      const {userManager} = await deploySeperate()
+
+      userManager.setUsername("Ionic")
+
+      expect((await userManager.getUser(a.address)).username).to.be.equal("Ionic")
+    })
+
+    it("User Manager can set correct logo Url", async ()=>{
+      const {userManager} = await deploySeperate()
+
+      userManager.setUserLogo("anything")
+
+      expect((await userManager.getUser(a.address)).logoUrl).to.be.equal("anything")
+    })
+
+    it("User Manager can mint property NFT", async ()=>{
+      const { ousd, propertyManager, userManager } = await deploySeperate();
+      await propertyManager.createNewProperty(
+        "La Vilas",
+        "1000",
+        ["dytyatt"],
+        "Unknown"
+      );
+      await ousd.connect(a).approve(propertyManager.address, "103");
+      await propertyManager.connect(a).fundProperty(0, "103");
+      await ousd.connect(a).approve(propertyManager.address, "103");
+      await propertyManager.connect(a).fundProperty(0, "103");
+
+      const tx =  (await userManager.mintPropertyNFT(0, "anything"))
+
+      expect(tx).not.to.be.reverted;
+    })
+
+    
   });
 });
