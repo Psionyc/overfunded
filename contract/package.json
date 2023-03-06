@@ -8,7 +8,9 @@
     "compile": "npx hardhat compile",
     "deploy:node": "npx hardhat run --network localhost scripts/deploy.ts",
     "deploy:testnet": "npx hardhat run --network mumbai scripts/deploy.ts",
-    "deploy:mainnet": "npx hardhat run --network polygon scripts/deploy.ts"
+    "deploy:mainnet": "npx hardhat run --network polygon scripts/deploy.ts",
+    "deploy:fantom": "npx hardhat run --network fantom scripts/deploy.ts",
+    "deploy:fantom-testnet": "npx hardhat run --network fantomTestnet scripts/deploy.ts"
   },
   "keywords": [],
   "author": "Psyonic",

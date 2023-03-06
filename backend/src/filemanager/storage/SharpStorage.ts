@@ -1,0 +1,3 @@
+class SharpStorage extends Storage {
+    
+}

@@ -27,7 +27,7 @@ async function main() {
     "Dundalk House",
     "1000",
     [
-      "https://unsplash.com/photos/Hh18POSx5qk/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MTV8fGhvdXNlfGVufDB8fHx8MTY2OTkxNDExOA&force=true",
+      "https://unsplash.com/photos/Hh18POSx5qk/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MTV8fGhvdXNlfGVufDB8fHx8MTY2OTkxNDExOA&force=true&w=500",
     ],
     "Dundalk, Maryland(MD), 21222"
   );
@@ -37,7 +37,7 @@ async function main() {
     "La Vila Es Beauty",
     "2000",
     [
-      "https://unsplash.com/photos/U6Q6zVDgmSs/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MTd8fGhvdXNlfGVufDB8fHx8MTY2OTkxNDExOA&force=true",
+      "https://unsplash.com/photos/U6Q6zVDgmSs/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MTd8fGhvdXNlfGVufDB8fHx8MTY2OTkxNDExOA&force=true&w=500",
     ],
     "Pleasantville, Ohio(OH), 43148"
   );
@@ -46,7 +46,7 @@ async function main() {
     "House Of Cards",
     "3000",
     [
-      "https://unsplash.com/photos/rChFUMwAe7E/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjY5OTMzMTUx&force=true",
+      "https://unsplash.com/photos/rChFUMwAe7E/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjY5OTMzMTUx&force=true&w=500",
     ],
     "Dixon, Missouri(MO), 65459"
   );
@@ -55,7 +55,7 @@ async function main() {
     "Porshe",
     "4000",
     [
-      "https://unsplash.com/photos/yFV39g6AZ5o/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MjJ8fGhvdXNlfGVufDB8fHx8MTY2OTkwODYyNA&force=true",
+      "https://unsplash.com/photos/yFV39g6AZ5o/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MjJ8fGhvdXNlfGVufDB8fHx8MTY2OTkwODYyNA&force=true&w=500",
     ],
     "Vixon, Missouri(MO), 65459"
   );
@@ -64,7 +64,7 @@ async function main() {
     "Kamida",
     "100000",
     [
-      "https://unsplash.com/photos/XGvwt544g8k/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MjR8fGhvdXNlfGVufDB8fHx8MTY2OTkwODYyNA&force=true",
+      "https://unsplash.com/photos/XGvwt544g8k/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MjR8fGhvdXNlfGVufDB8fHx8MTY2OTkwODYyNA&force=true&w=500",
     ],
     "Nixon, Missouri(MO), 65459"
   );
@@ -73,7 +73,7 @@ async function main() {
     "Cest La Villa",
     "7000",
     [
-      "https://unsplash.com/photos/ITzfgP77DTg/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mjd8fGhvdXNlfGVufDB8fHx8MTY2OTkwODYyNA&force=true",
+      "https://unsplash.com/photos/ITzfgP77DTg/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mjd8fGhvdXNlfGVufDB8fHx8MTY2OTkwODYyNA&force=true&w=500",
     ],
     "Smyrna, Georgia(GA), 30080"
   );
@@ -82,7 +82,7 @@ async function main() {
     "Miamato De Carera",
     "89009",
     [
-      "https://unsplash.com/photos/b_79nOqf95I/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mjh8fGhvdXNlfGVufDB8fHx8MTY2OTkwODYyNA&force=true",
+      "https://unsplash.com/photos/b_79nOqf95I/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mjh8fGhvdXNlfGVufDB8fHx8MTY2OTkwODYyNA&force=true&w=500",
     ],
     "74 Carriage CirOley, Pennsylvania(PA), 19547"
   );
@@ -91,7 +91,7 @@ async function main() {
     "Cissa A Missa",
     "67468",
     [
-      "https://unsplash.com/photos/pmhdkgRCbtE/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MzR8fGhvdXNlfGVufDB8fHx8MTY2OTkwODYyNA&force=true",
+      "https://unsplash.com/photos/pmhdkgRCbtE/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MzR8fGhvdXNlfGVufDB8fHx8MTY2OTkwODYyNA&force=true&w=500",
     ],
     "Naperville, Illinois(IL), 60563"
   );
@@ -100,7 +100,7 @@ async function main() {
     "Testiago La Carera",
     "12483",
     [
-      "https://unsplash.com/photos/RCF5KSWb7Ms/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mzh8fGhvdXNlfGVufDB8fHx8MTY2OTkwODYyNA&force=true",
+      "https://unsplash.com/photos/RCF5KSWb7Ms/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mzh8fGhvdXNlfGVufDB8fHx8MTY2OTkwODYyNA&force=true&w=500",
     ],
     "Theresa, New York(NY), 13691"
   );

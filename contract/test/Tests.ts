@@ -70,7 +70,7 @@ describe("Testing Interconnected contracts", function () {
     });
     it("Can ascertain correct property manager", async () => {
       const propertyManager = await deploy();
-      
+
       expect(propertyManager).not.to.be.undefined;
     });
   });
@@ -170,7 +170,7 @@ describe("Testing Interconnected contracts", function () {
         property.fundStorage
       );
 
-      expect(await ousd.balanceOf(fundStorage.address)).to.be.equal(0)
+      expect(await ousd.balanceOf(fundStorage.address)).to.be.equal(0);
 
       // console.log(await fundStorage.getUserShare(a.address));
     });
@@ -245,14 +245,18 @@ describe("Testing Interconnected contracts", function () {
       const profit = await fundStorage.profit();
       // console.log(await ousd.balanceOf(a.address));
       expect(profit).to.be.equal("2000000");
-      
+
       //Actual
-      const withdrawableProfits = await fundStorage.getWithdrawableProfits(a.address);
+      const withdrawableProfits = await fundStorage.getWithdrawableProfits(
+        a.address
+      );
       // console.log(withdrawableProfits)
       await propertyManager.withdrawProfits(0);
-      const withdrawableProfits2 = await fundStorage.getWithdrawableProfits(a.address);
+      const withdrawableProfits2 = await fundStorage.getWithdrawableProfits(
+        a.address
+      );
       // console.log(withdrawableProfits2)
-        expect(withdrawableProfits2).to.be.equal(0)
+      expect(withdrawableProfits2).to.be.equal(0);
     });
     it("User manager can accurately get payment data", async () => {
       //Setup
@@ -280,50 +284,60 @@ describe("Testing Interconnected contracts", function () {
       // console.log(await ousd.balanceOf(a.address));
       expect(profit).to.be.equal("2000000");
       //Actual
-      const withdrawableProfits = await fundStorage.getWithdrawableProfits(a.address);
+      const withdrawableProfits = await fundStorage.getWithdrawableProfits(
+        a.address
+      );
       await propertyManager.withdrawProfits(0);
       const user = await userManager.getUser(a.address);
-      
+
       // console.log(user.totalFunds);
       // console.log(user.assetsFunded);
 
-      expect(user.totalFunds).to.be.equal(206)
-      expect(user.assetsFunded).to.be.equal(2)
+      expect(user.totalFunds).to.be.equal(206);
+      expect(user.assetsFunded).to.be.equal(2);
     });
 
-    it("User Manager can set correct username", async ()=>{
-      const {userManager} = await deploySeperate()
+    it("User Manager can set correct username", async () => {
+      const { userManager } = await deploySeperate();
 
-      userManager.setUsername("Ionic")
+      userManager.setUsername("Ionic");
 
-      expect((await userManager.getUser(a.address)).username).to.be.equal("Ionic")
-    })
+      expect((await userManager.getUser(a.address)).username).to.be.equal(
+        "Ionic"
+      );
+    });
 
-    it("User Manager can set correct username", async ()=>{
-      const {userManager} = await deploySeperate()
+    it("User Manager can set correct username", async () => {
+      const { userManager } = await deploySeperate();
 
-      userManager.setUsername("Ionic")
+      userManager.setUsername("Ionic");
 
-      expect((await userManager.getUser(a.address)).username).to.be.equal("Ionic")
-    })
+      expect((await userManager.getUser(a.address)).username).to.be.equal(
+        "Ionic"
+      );
+    });
 
-    it("User Manager can set correct username", async ()=>{
-      const {userManager} = await deploySeperate()
+    it("User Manager can set correct username", async () => {
+      const { userManager } = await deploySeperate();
 
-      userManager.setUsername("Ionic")
+      userManager.setUsername("Ionic");
 
-      expect((await userManager.getUser(a.address)).username).to.be.equal("Ionic")
-    })
+      expect((await userManager.getUser(a.address)).username).to.be.equal(
+        "Ionic"
+      );
+    });
 
-    it("User Manager can set correct logo Url", async ()=>{
-      const {userManager} = await deploySeperate()
+    it("User Manager can set correct logo Url", async () => {
+      const { userManager } = await deploySeperate();
 
-      userManager.setUserLogo("anything")
+      userManager.setUserLogo("anything");
 
-      expect((await userManager.getUser(a.address)).logoUrl).to.be.equal("anything")
-    })
+      expect((await userManager.getUser(a.address)).logoUrl).to.be.equal(
+        "anything"
+      );
+    });
 
-    it("User Manager can mint property NFT", async ()=>{
+    it("User Manager can mint property NFT", async () => {
       const { ousd, propertyManager, userManager } = await deploySeperate();
       await propertyManager.createNewProperty(
         "La Vilas",
@@ -336,11 +350,9 @@ describe("Testing Interconnected contracts", function () {
       await ousd.connect(a).approve(propertyManager.address, "103");
       await propertyManager.connect(a).fundProperty(0, "103");
 
-      const tx =  (await userManager.mintPropertyNFT(0, "anything"))
+      const tx = await userManager.mintPropertyNFT(0, "anything");
 
       expect(tx).not.to.be.reverted;
-    })
-
-    
+    });
   });
 });
