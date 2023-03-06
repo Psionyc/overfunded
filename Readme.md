@@ -21,7 +21,7 @@ Overfunded is a next-gen incentivized crowdfunding system that allows owning rea
 ## How To Use
 
 **Step 0**:
-Go to [Mumbai Faucet](https://overfunded.vercel.app/faucet) and get some Test Matic.  
+Go to [FTM-testnet Faucet](https://overfunded.vercel.app/faucet) and get some Test Matic.  
 **Step 1**:
 Go to [Overfunded Faucet](https://overfunded.vercel.app/faucet), connect a wallet and _GET OUSD_. 
 
@@ -78,9 +78,9 @@ VITE_OUSD = "0x0dd279A9A03e57546B70fbe7903FdCA18c0E14d6"
 VITE_USER_MANAGER = "0x136dEb4916e6e34602Fc7cac91423CA75A630743"
 VITE_CURRENCY_SYMBOL = "MATIC"
 VITE_CURRENCY_NAME = "Matic"
-VITE_NETWORK_URL  = "https://rpc-mumbai.maticvigil.com"
+VITE_NETWORK_URL  = "https://rpc-FTM-testnet.maticvigil.com"
 VITE_CHAIN_ID = "0x13881"
-VITE_CHAIN_NAME = "Mumbai Testnet"
+VITE_CHAIN_NAME = "FTM-testnet"
 VITE_DECIMALS = 18
 VITE_BACKEND_URL = "https://overfunded-backend-production.up.railway.app" 
 ```
@@ -98,7 +98,7 @@ VITE_BACKEND_URL = "https://overfunded-backend-production.up.railway.app"
 
 #### **ERC720i.sol**:
 
-One of my major 'offs' with the current ERC20 implementation was that to use an icon you had to login into polygonscan which made it feel less decentralized... The ERC720i implementation allows you to create tokens and keep the icons on chain...
+One of my major 'offs' with the current ERC20 implementation was that to use an icon you had to login into ftmscan which made it feel less decentralized... The ERC720i implementation allows you to create tokens and keep the icons on chain...
 
 #### **FundStorage.sol**:
 
@@ -151,7 +151,7 @@ Challenges I faced during the contract development process are:
 - Percentage Calculation
 - Approve and TransferFrom
 
-**Hardhat Node**: This is probably the most daunting error of the entire development process... The error makes it that calls made to a smart contract are unidentified... The easiest solution is to move to a cloud network like polygon mainnet or mumbai testnet [(Solution Link)](https://ethereum.stackexchange.com/questions/124235/providererror-error-transaction-reverted-function-selector-was-not-recognized)
+**Hardhat Node**: This is probably the most daunting error of the entire development process... The error makes it that calls made to a smart contract are unidentified... The easiest solution is to move to a cloud network like ftm mainnet or FTM-testnet [(Solution Link)](https://ethereum.stackexchange.com/questions/124235/providererror-error-transaction-reverted-function-selector-was-not-recognized)
 
 **Storage vs Memory**: During contract development it occurred to me that some specific data on the contract wasn't updating and after a few hours of research I found out that storage is to be used instead of memory.Memory duplicates the data while storage points to the original data
 

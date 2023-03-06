@@ -29,7 +29,7 @@
           <h1
             class="font-semibold text-[28px] lg:text-[40px] text-center md:text-start"
           >
-            Next-Gen incentivized crowdfunding on the Polygon Ecosystem
+            Next-Gen incentivized crowdfunding on the Fantom Ecosystem
           </h1>
 
           <img
