@@ -5,7 +5,7 @@
 - Vue (Frontend)
 - Ethers js (Contact Interaction)
 - Hardhat (Contract Devlopment)
-- Node (Optional Backend)
+- Nestjs (Optional Backend)
 
 ## Use of Product
 
@@ -21,7 +21,7 @@ Overfunded is a next-gen incentivized crowdfunding system that allows owning rea
 ## How To Use
 
 **Step 0**:
-Go to [FTM-testnet Faucet](https://overfunded.vercel.app/faucet) and get some Test Matic.  
+Go to [FTM-testnet Faucet](https://https://faucet.fantom.network/) and get some Test Matic.  
 **Step 1**:
 Go to [Overfunded Faucet](https://overfunded.vercel.app/faucet), connect a wallet and _GET OUSD_. 
 
@@ -73,16 +73,16 @@ You can check all your nfts on [Opensea (Overfunded NFTs)](https://testnets.open
 Below is a list showcasing the public environment variables used, otherwise sensitive data have been removed from the list.  
 
 ```
-VITE_PROPERTY_MANAGER = "0x2dAE9299C33C63d5081823e942A2981Dc8a5494a"
-VITE_OUSD = "0x0dd279A9A03e57546B70fbe7903FdCA18c0E14d6"
-VITE_USER_MANAGER = "0x136dEb4916e6e34602Fc7cac91423CA75A630743"
-VITE_CURRENCY_SYMBOL = "MATIC"
-VITE_CURRENCY_NAME = "Matic"
-VITE_NETWORK_URL  = "https://rpc-FTM-testnet.maticvigil.com"
-VITE_CHAIN_ID = "0x13881"
-VITE_CHAIN_NAME = "FTM-testnet"
+VITE_PROPERTY_MANAGER = "0x30D7f7879dcfa19a6C90F575D1A362a2F453bA31"
+VITE_OUSD = "0xea86B425eEB889eC501107f1d5D23332d8549FED"
+VITE_USER_MANAGER = "0x3884ae78b5e42c14559B7CF60bF2265CC0a49f2d"
+VITE_CURRENCY_SYMBOL = "FTM"
+VITE_CURRENCY_NAME = "Fantom"
+VITE_NETWORK_URL  = "https://rpc.testnet.fantom.network"
+VITE_CHAIN_ID = "0xfa2"
+VITE_CHAIN_NAME = "Fantom Testnet"
 VITE_DECIMALS = 18
-VITE_BACKEND_URL = "https://overfunded-backend-production.up.railway.app" 
+VITE_BACKEND_URL = "https://api.overfunded.xyz"
 ```
 
 ## Major Contracts and Functionalities
@@ -159,7 +159,7 @@ Challenges I faced during the contract development process are:
 
 **Approve and TransferFrom**: One of the other errors that I made was to assume that it was possible to approve and transfer in the same contract function... There were two solutions in this case.
 
-1. Use the ERC777 contract [ERC77](https://docs.openzeppelin.com/contracts/4.x/erc777)
+1. Use the ERC777 contract [ERC777](https://docs.openzeppelin.com/contracts/4.x/erc777)
 2. Use the ERC20 and call two separate functions.  
    I went with the second option since the ERC777 contract isn't very vast at the momen, changing to the ERC777 standard might be considered in the future
 
